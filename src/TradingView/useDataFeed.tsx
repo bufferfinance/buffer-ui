@@ -626,6 +626,7 @@ export const getPriceFromKlines = (marketPrice, asset: { tv_id: string }) => {
   return lastBar.price;
 };
 export const getCachedPriceFromKlines = (asset: { tv_id: string }) => {
+  console.log('silentPriceCache',silentPriceCache,asset)
   const lastBar = getLastbar(silentPriceCache, asset);
   if (!lastBar) return '';
   return lastBar.price;
@@ -639,7 +640,9 @@ export const getLastbar = (
   asset
 ): { price: string; time: number } | null => {
   if (!asset?.tv_id) return null;
+  
   const kline = marketPrice?.[asset.tv_id];
+  console.log('price-deb:actik',kline)
 
   if (!kline) return null;
 

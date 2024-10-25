@@ -1,39 +1,36 @@
 import { multiply } from '@Utils/NumString/stringArithmatics';
 import axios from 'axios';
 import Big from 'big.js';
-import { atom, useSetAtom } from 'jotai';
+import { atom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 import { Market2Prices } from 'src/Types/Market';
 import { reconnectingSocket } from './wsclient';
 import { useActiveMarket } from '@Views/TradePage/Hooks/useActiveMarket';
 type WSUPdate = {
-  type: 'price_update';
-  price_feed: {
-    ema_price: {
-      conf: string;
-      expo: number;
-      price: string;
-      publish_time: number;
-    };
-    id: string;
-    price: {
-      conf: string;
-      expo: number;
-      price: string;
-      publish_time: number;
-    };
-  };
+  channel: 'trades';
+  data: {
+    "coin": "BTC",
+    "side": "A" | "B",
+    "px": string,
+    "sz":string,
+    "time": number,
+    "hash": `0x${string}`
+    "tid": number
+}[]
 };
+
 // Production = wss://bufferf-pythnet-4e5a.mainnet.pythnet.rpcpool.com/hermes/ws
 // Developement = wss://hermes.pyth.network/ws
 
-const client = reconnectingSocket('wss://hermes.pyth.network/ws');
+const client = reconnectingSocket('wss://api.hyperliquid.xyz/ws');
 export let ts2asset2updatecnt = {};
 
 export const silentPriceCache = {};
 export const usePrice = () => {};
 export const usePriceRetriable = () => {
   const setPrice = useSetAtom(priceAtom);
+  const pp = useAtomValue(priceAtom);
+  console.log('cdrs',pp)
   const [isConnected, setIsConnected] = useState(client.isConnected());
   const { activeMarket } = useActiveMarket();
   const activeMarketRef = useRef('BTCUSD');
@@ -48,7 +45,6 @@ export const usePriceRetriable = () => {
   }, [setIsConnected]);
   useEffect(() => {
     function handleMessage(message: string) {
-      console.log('ws-deb:msg', message);
 
       const d = {
         type: 'price_update',
@@ -74,55 +70,27 @@ export const usePriceRetriable = () => {
       
       
       */
-      const lastJsonMessage = JSON.parse(message);
+      const lastJsonMessage:WSUPdate = JSON.parse(message);
+      console.log('lastJsonMessage',lastJsonMessage)
       if (!lastJsonMessage) return;
-      if ((lastJsonMessage as WSUPdate).type == 'price_update') {
-        const priceUpdatePacked = [
-          {
-            price: multiply(
-              (lastJsonMessage as WSUPdate).price_feed.price.price,
-              new Big('10')
-                .pow((lastJsonMessage as WSUPdate).price_feed.price.expo)
-                .toString()
-            ),
-            time:
-              (lastJsonMessage as WSUPdate).price_feed.price.publish_time *
-              1000,
-          },
-        ];
-        console.log('ws-deb:priceUpdatePacked', priceUpdatePacked);
-        const pd = [
-          {
-              "price": "0.14022468",
-              "time": 1729834073000
-          }
-      ]
+      if ((lastJsonMessage)?.channel == 'trades') {
+        
+        const lastUpdate = lastJsonMessage.data[lastJsonMessage.data.length-1];
+        const parsedPriceUpdate = [{
+          time: lastUpdate.time,
+          price: lastUpdate.px,
+          volume:0
+        }];
         const data = {
-          [pythIds[(lastJsonMessage as WSUPdate).price_feed.id]]:
-            priceUpdatePacked,
+          'BTCUSD': parsedPriceUpdate
         };
-        silentPriceCache[pythIds[(lastJsonMessage as WSUPdate).price_feed.id]] =
-          priceUpdatePacked;
-        // console.log(`setting: `, message);
-        // const ts = Math.floor(Date.now() / 1000);
-        const asset = Object.keys(data)[0];
-        // if (ts in ts2asset2updatecnt) {
-        //   let asset2updatecnt = ts2asset2updatecnt[ts];
-        //   if (asset in asset2updatecnt) {
-        //     asset2updatecnt[asset]++;
-        //   } else {
-        //     // replace asset2updatecnt with ts2asset2updatecnt in below line
-        //     ts2asset2updatecnt[ts] = { ...ts2asset2updatecnt[ts], [asset]: 1 };
-        //   }
-        // } else {
-        //   const assetUpdated = { [asset]: 1 };
-        //   ts2asset2updatecnt = { ...ts2asset2updatecnt, [ts]: assetUpdated };
-        // }
-        console.log('ws-deb:msg', message);
-
-        if (activeMarketRef.current && asset == activeMarketRef.current) {
+        silentPriceCache['BTCUSD'] = parsedPriceUpdate
+        // const asset = Object.keys(data)[0];
+        console.log('ws-deb:msg',parsedPriceUpdate );
+        
+        // if (activeMarketRef.current && asset == activeMarketRef.current) {
           setPrice((p) => ({ ...p, ...data }));
-        }
+        // }
       }
     }
     client.on(handleMessage);
@@ -134,8 +102,13 @@ export const usePriceRetriable = () => {
         ids: Object.keys(pythIds),
         type: 'subscribe',
       });
+      const hlmsg = JSON.stringify({
+        method: 'subscribe',
+        subscription: { type: 'trades', coin: 'BTC' },
+      });
+
       console.log('ws-deb', wsMsg);
-      client.getClient()!.send(wsMsg);
+      client.getClient()!.send(hlmsg);
     }
   }, [isConnected]);
 };

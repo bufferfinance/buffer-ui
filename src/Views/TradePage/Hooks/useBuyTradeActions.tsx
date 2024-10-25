@@ -112,6 +112,7 @@ export const useBuyTradeActions = (userInput: string) => {
     const isForex = activeAsset?.category === AssetCategory[0];
     const maxDuration = switchPool?.max_duration;
     const minDuration = switchPool?.min_duration;
+    console.log('trade-deb')
     if (!maxDuration || !minDuration) {
       return toastify({
         type: 'error',
@@ -432,81 +433,7 @@ export const useBuyTradeActions = (userInput: string) => {
         };
 
         const trailingUrl = 'create/';
-
-        const resp: { data: TradeType } = await axios.post(
-          baseUrl + trailingUrl,
-          apiParams,
-          { params: { environment: activeChain.id } }
-        );
-        if (resp.data) {
-          pendingQueueIds.add(resp.data.queue_id);
-          postQueuedId(resp?.data?.queue_id, configData.router);
-        }
-        setLoading(null);
-        let content = (
-          <div className="flex flex-col gap-y-2 text-f12 ">
-            <div className="nowrap font-[600]">
-              {customTrade.limitOrderExpiry ? 'Limit' : 'Trade'} order initiated
-              {/* at Strike : {toFixed(divide(baseArgs[ArgIndex.Strike], 8), 3)} */}
-            </div>
-            <div className="flex items-center">
-              {activeAsset.token0 + '-' + activeAsset.token1}&nbsp;&nbsp;
-              <span className="!text-3">to go</span>&nbsp;
-              {customTrade.is_up ? (
-                <>
-                  <UpIcon className="text-green scale-125" /> &nbsp;Higher
-                </>
-              ) : (
-                <>
-                  <DownIcon className="text-red scale-125" />
-                  &nbsp; Lower
-                </>
-              )}
-            </div>
-            <div>
-              <span>
-                <span className="!text-3">Total amount:</span>
-                {userInput}&nbsp;{tokenName}
-              </span>
-            </div>
-          </div>
-        );
-        toastify({
-          price,
-          type: 'success',
-          timings: 20,
-          body: null,
-          msg: content,
-        });
-
-        content = (
-          <div className="flex flex-col gap-y-2 text-f12 ">
-            <div className="nowrap font-[600]">
-              {customTrade.limitOrderExpiry ? 'Limit' : 'Trade'} order placed
-              {/* at Strike : {toFixed(divide(baseArgs[ArgIndex.Strike], 8), 3)} */}
-            </div>
-            <div className="flex items-center">
-              {activeAsset.token0 + '-' + activeAsset.token1}&nbsp;&nbsp;
-              <span className="!text-3">to go</span>&nbsp;
-              {customTrade.is_up ? (
-                <>
-                  <UpIcon className="text-green scale-125" /> &nbsp;Higher
-                </>
-              ) : (
-                <>
-                  <DownIcon className="text-red scale-125" />
-                  &nbsp; Lower
-                </>
-              )}
-            </div>
-            <div>
-              <span>
-                <span className="!text-3">Total amount:</span>
-                {userInput}&nbsp;{tokenName}
-              </span>
-            </div>
-          </div>
-        );
+        console.log('apiParams',apiParams);
         // toastify({
         //   price,
         //   type: 'success',

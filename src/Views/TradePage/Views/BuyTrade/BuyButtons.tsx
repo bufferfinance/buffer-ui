@@ -56,6 +56,7 @@ export const BuyButtons = ({
   const activeAssetPrice = getLastbar(marketPrice, {
     tv_id: activeMarket.tv_id,
   });
+  console.log('price-deb:active',activeAssetPrice)
   // const activeAssetPrice = useCurrentPrice({
   //   token0: activeMarket.token0,
   //   token1: activeMarket.token1,
