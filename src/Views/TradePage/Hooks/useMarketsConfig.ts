@@ -13,13 +13,19 @@ export const useMarketsConfig = () => {
       return null;
     }
 
+    console.log(`DDDresponse: `, data);
+
     const response: marketType[] = [];
     data.optionContracts.forEach((item) => {
       const index = response.findIndex((config) => config.tv_id === item.asset);
       // console.log(`item: `, item/);
       if (index !== -1) {
+        console.log(`DDDresponse1: `, item);
+
         response[index].pools.push(createPoolObject(item));
       } else {
+        console.log(`DDDresponse0: `, item);
+
         const marketInfo: chartDataType =
           marketsForChart[item.asset as keyof typeof marketsForChart];
         response.push({
@@ -31,7 +37,7 @@ export const useMarketsConfig = () => {
       }
     });
 
-    // console.log(`DDDresponse: `, response);
+    console.log(`DDDresponse: `, response);
     // console.log(`response: `, response);
     return response;
   }, [data]);

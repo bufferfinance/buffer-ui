@@ -146,23 +146,16 @@ export const ContractsConfig = {
     },
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-      '0x6Ec7B10bF7331794adAaf235cb47a2A292cD9c7e': {
-        tokenAddress: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
-        faucet: '0x0000000000000000000000000000000000000000',
-        decimals: 6,
-        token: 'USDC.e',
-        permitName: 'USD Coin (Arb1)',
-        is_pol: false,
-      },
-      '0xfD9f8841C471Fcc55f5c09B8ad868BdC9eDeBDE1': {
-        tokenAddress: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
+
+      "0xA4fcbfbFFc7feEaAc50f804fc88Df0fb5CF2362B": {
+        tokenAddress: '0xf9b92Fde16c458953a479464e46F4ddf3B0B183e',
         faucet: null,
         decimals: 6,
         token: 'USDC',
         permitName: 'USD Coin',
-        is_pol: true,
+        is_pol: false,
       },
-      '0xf9b92Fde16c458953a479464e46F4ddf3B0B183e': {
+      "0xf9b92Fde16c458953a479464e46F4ddf3B0B183e": {
         tokenAddress: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
         faucet: null,
         decimals: 6,

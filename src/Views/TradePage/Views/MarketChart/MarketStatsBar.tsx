@@ -93,6 +93,7 @@ const MarketStatsBar: React.FC<{ isMobile?: boolean }> = ({ isMobile }) => {
   const setChartTimes = useSetAtom(chartNumberAtom);
   const chartTimes = useAtomValue(chartNumberAtom);
   const { activeMarket } = useActiveMarket();
+  console.log('activeMarket',activeMarket)
   const { poolDetails, switchPool } = useSwitchPool();
   const ref = useRef(null);
   const [menuState, toggleMenu] = useMenuState({ transition: true });

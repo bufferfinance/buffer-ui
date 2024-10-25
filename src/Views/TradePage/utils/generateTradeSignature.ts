@@ -198,12 +198,13 @@ const generateApprovalSignature = async (
     domain: {
       name: domainName,
       version: domainName === 'USD Coin' ? '2' : '1',
+      // version: domainName === 'USD Coin' ? (isDevnet?'1':'2') : '1',
       chainId: activeChainId,
       verifyingContract: getAddress(tokenAddress),
     },
     message: approveMessage,
   } as const;
-  console.log(approveSignatureParams, 'approve-deb')
+  console.log('approve-deb',approveSignatureParams)
   const res = await signMethod(approveSignatureParams);
 
   return [res, getRSVFromSignature(res)];
@@ -214,80 +215,3 @@ export {
   generateBuyTradeSignature,
   getRSVFromSignature,
 };
-
-
-/*
-Server
-{'types': {'EIP712Domain': [{'name': 'name', 'type': 'string'}, {'name': 'version', 'type': 'string'}, {'name': 'chainId', 'type': 'uint256'}, {'name': 'verifyingContract', 'type': 'address'}], 'Permit': [{'name': 'owner', 'type': 'address'}, {'name': 'spender', 'type': 'address'}, {'name': 'value', 'type': 'uint256'}, {'name': 'nonce', 'type': 'uint256'}, {'name': 'deadline', 'type': 'uint256'}]},
- 'domain': 
- {'name': 'USD Coin', 
- 'version': '2',
-  'chainId': 42161121,
-   'verifyingContract': '0xaf88d065e77c8cC2239327C5EDb3A432268e5831'
-  }, 'primaryType': 'Permit', 
- 'message': {'owner': '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
-  'spender': '0x2BAA48961C1CD376484b601278bF7A51E94293a9', 
-  'value': 115792089237316195423570985008687907853269984665640564039457584007913129639935, 
-  'nonce': 1, 'deadline': 1728392202}}"}
-
-
-{
-    "types": {
-        "EIP712Domain": [
-            {
-                "name": "name",
-                "type": "string"
-            },
-            {
-                "name": "version",
-                "type": "string"
-            },
-            {
-                "name": "chainId",
-                "type": "uint256"
-            },
-            {
-                "name": "verifyingContract",
-                "type": "address"
-            }
-        ],
-        "Permit": [
-            {
-                "name": "owner",
-                "type": "address"
-            },
-            {
-                "name": "spender",
-                "type": "address"
-            },
-            {
-                "name": "value",
-                "type": "uint256"
-            },
-            {
-                "name": "nonce",
-                "type": "uint256"
-            },
-            {
-                "name": "deadline",
-                "type": "uint256"
-            }
-        ]
-    },
-    "primaryType": "Permit",
-    "domain": {
-        "name": "USD Coin",
-        "version": "2",
-        "chainId": 42161121,
-        "verifyingContract": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
-    },
-    "message": {
-        "nonce": 1,
-        "value": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
-        "owner": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
-        "deadline": "1728392202",
-        "spender": "0xf4cc4978C5d80945364fBdBD3750429505ADeB89"
-    }
-}
-
-*/

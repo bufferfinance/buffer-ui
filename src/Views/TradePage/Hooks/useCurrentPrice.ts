@@ -15,6 +15,7 @@ export const useCurrentPrice = ({
   token1?: string;
 }) => {
   const marketPrice = useAtomValue(priceAtom);
+  console.log('marketPrice',marketPrice)
   if (!token0 || !token1) {
     return { currentPrice: 0, precision: 0 };
   }

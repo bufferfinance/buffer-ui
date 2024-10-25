@@ -89,6 +89,7 @@ export const CancelledTable: React.FC<{
     if (trades === undefined) return <></>;
 
     const trade = trades?.[row];
+    if(!trade.pool) return <>{trade.target_contract}</>
     const poolInfo = getPoolInfo(trade.pool.pool);
     if (!poolInfo) return <>Getting Poolinfo...</>;
     const spread = allSpreads?.[trade.market.tv_id]?.spread ?? 0;

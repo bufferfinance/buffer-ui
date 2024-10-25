@@ -48,6 +48,32 @@ export const usePriceRetriable = () => {
   }, [setIsConnected]);
   useEffect(() => {
     function handleMessage(message: string) {
+      console.log('ws-deb:msg', message);
+
+      const d = {
+        type: 'price_update',
+        price_feed: {
+          id: 'ef0d8b6fda2ceba41da15d4095d1da392a0d2f8ed0c6c7bc0f4cfac8c280b56d',
+          price: {
+            price: '17367515227',
+            conf: '17175686',
+            expo: -8,
+            publish_time: 1729833949,
+          },
+          ema_price: {
+            price: '17383457000',
+            conf: '15955366',
+            expo: -8,
+            publish_time: 1729833949,
+          },
+        },
+      };
+      /*
+      
+      
+      
+      
+      */
       const lastJsonMessage = JSON.parse(message);
       if (!lastJsonMessage) return;
       if ((lastJsonMessage as WSUPdate).type == 'price_update') {
@@ -64,6 +90,13 @@ export const usePriceRetriable = () => {
               1000,
           },
         ];
+        console.log('ws-deb:priceUpdatePacked', priceUpdatePacked);
+        const pd = [
+          {
+              "price": "0.14022468",
+              "time": 1729834073000
+          }
+      ]
         const data = {
           [pythIds[(lastJsonMessage as WSUPdate).price_feed.id]]:
             priceUpdatePacked,
@@ -85,6 +118,8 @@ export const usePriceRetriable = () => {
         //   const assetUpdated = { [asset]: 1 };
         //   ts2asset2updatecnt = { ...ts2asset2updatecnt, [ts]: assetUpdated };
         // }
+        console.log('ws-deb:msg', message);
+
         if (activeMarketRef.current && asset == activeMarketRef.current) {
           setPrice((p) => ({ ...p, ...data }));
         }
@@ -95,12 +130,12 @@ export const usePriceRetriable = () => {
   }, [setPrice]);
   useEffect(() => {
     if (isConnected) {
-      client.getClient()!.send(
-        JSON.stringify({
-          ids: Object.keys(pythIds),
-          type: 'subscribe',
-        })
-      );
+      const wsMsg = JSON.stringify({
+        ids: Object.keys(pythIds),
+        type: 'subscribe',
+      });
+      console.log('ws-deb', wsMsg);
+      client.getClient()!.send(wsMsg);
     }
   }, [isConnected]);
 };

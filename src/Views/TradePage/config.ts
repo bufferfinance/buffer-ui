@@ -217,7 +217,7 @@ export const appConfig = {
         metaData: {},
         name: 'UP_DOWN',
         product_id: 'abc',
-        router: '0xf4cc4978C5d80945364fBdBD3750429505ADeB89',
+        router: ContractsConfig[42161121].ud.router,
       },
       AB: {
         id: 1,

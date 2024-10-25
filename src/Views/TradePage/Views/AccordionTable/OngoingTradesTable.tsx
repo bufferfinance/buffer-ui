@@ -470,20 +470,13 @@ export const Probability: React.FC<{
   marketPrice: any;
 }> = ({ marketPrice, trade }) => {
   console.log(`OngoingTradesTable-trade: `, trade);
-  const IV =
-    calculateOptionIV(
-      trade.is_above ?? false,
-      trade.strike / 1e8,
-      +getCachedPriceFromKlines(trade.market),
-      trade.pool.IV,
-      trade.pool.IVFactorITM,
-      trade.pool.IVFactorOTM
-    ) / 1e4;
+  const IV = 1100
   const probabiliyt = getProbability(
     trade,
     +getCachedPriceFromKlines(trade.market),
     IV
   );
+  console.log('IV-deb:',IV)
   if (probabiliyt == undefined || probabiliyt == null) return <div>-%.</div>;
   return <div> {toFixed(probabiliyt, 2) + '%'}</div>;
 };

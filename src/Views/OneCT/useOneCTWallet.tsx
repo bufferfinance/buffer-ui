@@ -10,10 +10,10 @@ import { useSignTypedData } from 'wagmi';
 
 import { ethers } from 'ethers';
 import { atom, useAtom, useSetAtom } from 'jotai';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import secureLocalStorage from 'react-secure-storage';
 import { getChains } from 'src/Config/wagmiClient';
-import { getAddress, zeroAddress } from 'viem';
+import { getAddress, PrivateKeyAccount, zeroAddress } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { useAccount, usePublicClient } from 'wagmi';
 import { isOneCTModalOpenAtom } from './OneCTButton';
@@ -105,14 +105,25 @@ const useOneCTWallet = () => {
     if (!res?.one_ct) return false;
     return (
       oneCtPk !== null &&
-      res.one_ct.toLowerCase() !== ethers.constants.AddressZero.toLowerCase()
+      res.one_ct.toLowerCase() !== ethers.constants.AddressZero.toLowerCase() && is1CTEnabled(res.one_ct,oneCtPk,provider)
     );
   }, [res, res?.one_ct, res?.nonce, provider, oneCtPk]);
 
   const oneCTWallet = useMemo(() => {
-    if (!oneCtPk) return null;
+    if (!oneCtPk || !registeredOneCT) return null;
     return privateKeyToAccount(('0x' + oneCtPk) as any);
-  }, [oneCtPk, provider, registeredOneCT]);
+  }, [oneCtPk, provider,registeredOneCT]);
+  async function validateSing(oneCTWallet:PrivateKeyAccount) {
+    const user_signature = await getSingatureCached(oneCTWallet);
+    console.log('user_signature',user_signature,oneCTWallet.address)
+  }
+
+  useEffect(()=>{
+    console
+    if(oneCTWallet)
+      validateSing(oneCTWallet)
+
+  },[oneCTWallet])
 
   const generatePk = async () => {
     if (!res)
