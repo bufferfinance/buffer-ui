@@ -38,12 +38,12 @@ export const usePlatformActiveTrades = () => {
       fetcher: async () => {
         if (!markets) return { page_data: undefined, total_pages: 1 };
 
-        if (
-          ![arbitrum.id, arbitrumGoerli.id, arbitrumSepolia.id].includes(
-            activeChain.id as 42161
-          )
-        )
-          return { page_data: [], total_pages: 1 };
+        // if (
+        //   ![arbitrum.id, arbitrumGoerli.id, arbitrumSepolia.id].includes(
+        //     activeChain.id as 42161
+        //   )
+        // )
+        //   return { page_data: [], total_pages: 1 };
         const res = await axios.get(`${baseUrl}trades/all_active/`, {
           params: {
             user_address: address,
@@ -84,12 +84,12 @@ export const usePlatformHistoryTrades = () => {
     {
       fetcher: async () => {
         if (!markets) return { page_data: undefined, total_pages: 1 };
-        if (
-          ![arbitrum.id, arbitrumGoerli.id, arbitrumSepolia.id].includes(
-            activeChain.id as 42161
-          )
-        )
-          return { page_data: [], total_pages: 1 };
+        // if (
+        //   ![arbitrum.id, arbitrumGoerli.id, arbitrumSepolia.id].includes(
+        //     activeChain.id as 42161
+        //   )
+        // )
+        //   return { page_data: [], total_pages: 1 };
         const res = await axios.get(`${baseUrl}trades/all_history/`, {
           params: {
             user_address: address,
