@@ -204,7 +204,7 @@ export const useBuyABActions = (userInput: string) => {
         const difference = Math.abs(
           ((Number(customTrade.strike) - safeStrike) / safeStrike) * 100
         );
-
+        console.log('price-deb',difference,settings.slippageTolerance)
         if (difference > settings.slippageTolerance) {
           return toastify({
             type: 'error',

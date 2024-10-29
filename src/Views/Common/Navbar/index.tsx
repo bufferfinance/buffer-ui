@@ -131,7 +131,7 @@ export const Navbar: React.FC<INavbar> = () => {
             className="bg-transparent w-[100px] h-[35px]"
           ></button>
         )} */}
-        <BFRCounter />
+        {/* <BFRCounter /> */}
         <div id="dropdown-box" className="flex gap-4 items-center text-1">
           <AccountDropdown />
         </div>

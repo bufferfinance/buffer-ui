@@ -18,9 +18,9 @@ export const viemMulticall = async (
     address: c.address,
     id: c.id,
   }));
-  if (key.includes('trade')) {
-    console.log('rooot-deb-in')
-  }
+  // if (key.includes('trade')) {
+  //   console.log('rooot-deb-in')
+  // }
   const results = await client.multicall({ contracts: convertedCalls });
   let resultMap = {};
   results.forEach((r, i) => {
@@ -34,9 +34,7 @@ export const viemMulticall = async (
     resultMap[id] = [copy.result];
     // }
   });
-  if (key.includes('trade')) {
-    console.log('rooot-deb-', resultMap)
-  }
+
 
   return resultMap;
   /*

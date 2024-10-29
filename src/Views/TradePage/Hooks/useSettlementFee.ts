@@ -3,7 +3,7 @@ import axios from 'axios';
 import useSWR from 'swr';
 import { UDProductID, baseUrl } from '../config';
 import { useProducts } from '@Views/AboveBelow/Hooks/useProductName';
-import { dsc } from '@ConfigContract';
+import { dsc, mainClient } from '@ConfigContract';
 import { useActiveMarket } from './useActiveMarket';
 import { joinStrings } from '../utils';
 import { useAtomValue } from 'jotai';
@@ -25,7 +25,6 @@ export const useSettlementFee = () => {
   const { activeChain } = useActiveChain();
   const { activeMarket } = useActiveMarket();
   const currentTime = useAtomValue(timeSelectorAtom);
-  console.log(`currentTime: `, currentTime);
 
   const products = useProducts();
   return useSWR<IBaseSettlementFees>(
@@ -57,7 +56,7 @@ export const useSettlementFee = () => {
           ''
         );
         const periodInMinutes = currentTime.seconds / 60;
-        const response = await dsc.get(
+        const response = await mainClient.get(
           `settlement_fee/?environment=${activeChain.id}&product_id=${products.UP_DOWN.product_id}&queryPair=${activePair}`
         );
         // let response = {

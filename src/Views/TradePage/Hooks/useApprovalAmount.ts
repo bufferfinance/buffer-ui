@@ -28,7 +28,7 @@ export const useApprvalAmount = () => {
           baseUrl +
           `user/approval/?environment=${activeChainId}&user=${userAddress}&token=${tokenName}&product_id=${products.UP_DOWN.product_id}`
         );
-        console.log('approval-data', data)
+        // console.log('approval-data', data)
         if (status !== 200) return cache.get(id);
         return data;
       } catch (e) {

@@ -169,7 +169,13 @@ const getRSVFromSignature = (signature: string) => {
   const v = '0x' + signature.slice(130, 132);
   return { r, s, v };
 };
-
+function getDomainVersion(domainName:string){
+  // if(isDevnet){
+  //   return '1';
+  // }
+  // return domainName === 'USD Coin' ? '2' : '1'
+  return '1'
+}
 export default generateTradeSignature;
 const generateApprovalSignature = async (
   nonce: number,
@@ -197,7 +203,7 @@ const generateApprovalSignature = async (
     primaryType: 'Permit',
     domain: {
       name: domainName,
-      version: domainName === 'USD Coin' ? '2' : '1',
+      version: getDomainVersion(domainName),
       // version: domainName === 'USD Coin' ? (isDevnet?'1':'2') : '1',
       chainId: activeChainId,
       verifyingContract: getAddress(tokenAddress),

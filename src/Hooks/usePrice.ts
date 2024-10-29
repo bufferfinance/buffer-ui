@@ -86,7 +86,7 @@ export const usePriceRetriable = () => {
         };
         silentPriceCache['BTCUSD'] = parsedPriceUpdate
         // const asset = Object.keys(data)[0];
-        console.log('ws-deb:msg',parsedPriceUpdate );
+        // console.log('ws-deb:msg',parsedPriceUpdate );
         
         // if (activeMarketRef.current && asset == activeMarketRef.current) {
           setPrice((p) => ({ ...p, ...data }));

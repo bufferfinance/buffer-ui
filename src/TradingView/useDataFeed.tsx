@@ -642,7 +642,6 @@ export const getLastbar = (
   if (!asset?.tv_id) return null;
   
   const kline = marketPrice?.[asset.tv_id];
-  console.log('price-deb:actik',kline)
 
   if (!kline) return null;
 

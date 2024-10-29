@@ -436,7 +436,7 @@ export const getTabs = (
   } else
     return [
       {
-        to: `/ab/` + market,
+        to: `/binary/` + market,
         name: 'Trade',
         subTabs: [],
         isExternalLink: false,
@@ -447,19 +447,19 @@ export const getTabs = (
         subTabs: [],
         isExternalLink: false,
       },
-      {
-        to: `/referral`,
-        name: 'Referral',
-        subTabs: [],
-        isExternalLink: false,
-      },
+      // {
+      //   to: `/referral`,
+      //   name: 'Referral',
+      //   subTabs: [],
+      //   isExternalLink: false,
+      // },
 
-      {
-        to: `/profile`,
-        name: 'Profile',
-        subTabs: [],
-        isExternalLink: false,
-      },
+      // {
+      //   to: `/profile`,
+      //   name: 'Profile',
+      //   subTabs: [],
+      //   isExternalLink: false,
+      // },
       // {
       //   to: '/ab/BTC-USD/',
       //   name: 'Above/Below',
@@ -474,24 +474,24 @@ export const getTabs = (
       //   isExternalLink: false,
       // },
 
-      {
-        to: `/lp-rewards`,
-        name: 'LP Page',
-        subTabs: [],
-        isExternalLink: false,
-      },
-      {
-        to: '/rewards',
-        name: 'Rewards',
-        subTabs: [],
-        isExternalLink: false,
-      },
-      {
-        to: `/leaderboard/daily`,
-        name: 'Competitions',
-        subTabs: [],
-        isExternalLink: false,
-      },
+      // {
+      //   to: `/lp-rewards`,
+      //   name: 'LP Page',
+      //   subTabs: [],
+      //   isExternalLink: false,
+      // },
+      // {
+      //   to: '/rewards',
+      //   name: 'Rewards',
+      //   subTabs: [],
+      //   isExternalLink: false,
+      // },
+      // {
+      //   to: `/leaderboard/daily`,
+      //   name: 'Competitions',
+      //   subTabs: [],
+      //   isExternalLink: false,
+      // },
 
       // {
       //   to: `/dashboard`,
@@ -500,12 +500,12 @@ export const getTabs = (
       //   isExternalLink: false,
       // },
 
-      {
-        to: `https://stats.buffer.finance/`,
-        name: 'Stats',
-        subTabs: [],
-        isExternalLink: true,
-      },
+      // {
+      //   to: `https://stats.buffer.finance/`,
+      //   name: 'Stats',
+      //   subTabs: [],
+      //   isExternalLink: true,
+      // },
 
       // {
       //   to: `https://testnet-buffer-finance-git-v2-earn-production-bufferfinance.vercel.app/`,

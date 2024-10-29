@@ -28,25 +28,6 @@ const IbfrFaucet: React.FC = () => {
 
   const content = activeChain && [
     {
-      top: `Claim ${import.meta.env.VITE_ENV} ${
-        activeChain.nativeCurrency.symbol
-      }`,
-      middle: (
-        <>
-          You will have to claim{' '}
-          <span className="text-1 w500">
-            {import.meta.env.VITE_ENV} {activeChain.nativeCurrency.symbol}
-          </span>{' '}
-          for gas fee.
-        </>
-      ),
-      bottom: (
-        <div className="flex flex-col">
-          <TestnetLinks />
-        </div>
-      ),
-    },
-    {
       top: `Claim TESTNET Tokens`,
       bottom: (
         <ConnectionRequired>
@@ -118,7 +99,7 @@ const ClaimButton = ({ token }: { token: string }) => {
       className="btn nowrap"
       onClick={claim}
     >
-      Claim 500 {token}
+      Claim 100 {token}
     </BlueBtn>
   );
 };
@@ -143,6 +124,16 @@ const faucetClaimingSteps = {
     faucet: [
       {
         step: 'Claim testnet MATIC',
+        url: 'https://mumbaifaucet.com/',
+      },
+    ],
+  },
+  998: {
+    name: 'TESTH',
+    symbol: 'TESTH',
+    faucet: [
+      {
+        step: 'Claim USDC by sending 0.01 TESTH',
         url: 'https://mumbaifaucet.com/',
       },
     ],

@@ -10,12 +10,10 @@ export const useMarketsRequest = () => {
   const { activeChain } = useActiveChain();
   const configData = getConfig(activeChain.id);
   const { data: bothVersionMrkets, error, mutate } = useBothVersionsMarkets();
-  console.log('is-deb', bothVersionMrkets)
   return {
     data: {
       optionContracts: bothVersionMrkets?.optionContracts.filter(
         (optionContract) => {
-          console.log('match-deb', optionContract, configData)
           return optionContract.poolContract !== null &&
             getAddress(configData.router) ===
             getAddress(optionContract.routerContract) &&
@@ -60,7 +58,6 @@ export const useV2Markets = () => {
 export const useBothVersionsMarkets = () => {
   const { activeChain } = useActiveChain();
   const configData = getConfig(activeChain.id);
-  console.log('router', configData)
   async function fetcher(): Promise<response> {
     const response = await axios.post(indexer_url, {
       query: `{ 
@@ -92,7 +89,6 @@ export const useBothVersionsMarkets = () => {
                 }
             }`,
     });
-    console.log('root-deb', response.data?.data)
     return response.data?.data as response;
   }
 
@@ -120,7 +116,6 @@ export const useBothVersionsMarkets = () => {
             ) as keyof typeof configData.poolsInfo
             ] !== undefined
           );
-          console.log('check', configData.poolsInfo, option)
           return check;
         }),
       },

@@ -114,23 +114,59 @@ if (import.meta.env.VITE_MODE === 'production') {
   });
 }
 
-let customAnvil = JSON.parse(JSON.stringify(arbitrum));
-customAnvil.rpcUrls.default.http = ['http://localhost:2020'];
-customAnvil.name = "hyper-liquidity";
-customAnvil.id = 998;
-// let customAnvil = JSON.parse(JSON.stringify(arbitrum));
-// customAnvil.rpcUrls.default.http = ['http://localhost:2020'];
-// customAnvil.name = "arbitrum-main-fork";
-// customAnvil.id = 42161121;
-// customAnvil.contracts.multicall3 = '0xe4b0e88A17A9e7668233417892DA36d9c8316243'
 
+
+const LOCAL_ANVIL =[ "http://localhost:2020"];
+const arbFork = JSON.parse(JSON.stringify(arbitrum));
+arbFork.rpcUrls.default.http =LOCAL_ANVIL;
+arbFork.name = "Arbitrum-Fork";
+arbFork.id = 42161121;
+export const SUPPORTED_CHAINS = {
+  'hl-dev':defineChain({
+    id: 9988,
+    name: 'Hyperliquid-Devent',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Test Hyper',
+      symbol: 'TESTH',
+    },
+    rpcUrls: {
+      default: {
+        http: LOCAL_ANVIL,
+      },
+    },
+    contracts: {
+      multicall3: {
+        address: '0x0eb1A99ACbfA4bEDCfd3F25971963408de88DC5b',
+      },
+    },
+  }),
+  'arb-dev':arbFork,
+  'hl':defineChain({
+    id: 998,
+    name: 'Hyperliquid-Devent',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Test Hyper',
+      symbol: 'TESTH',
+    },
+    rpcUrls: {
+      default: {
+        http: ["https://api.hyperliquid-testnet.xyz/evm"],
+      },
+    },
+    contracts: {
+      multicall3: {
+        address: '0x0eb1A99ACbfA4bEDCfd3F25971963408de88DC5b',
+      },
+    },
+  }),
+}
+const ACTIVE_NETWORK = SUPPORTED_CHAINS['hl']
 const config = getDefaultConfig({
   appName: 'My RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',
-  chains: [
-    isDevnet ? customAnvil : arbitrum,
-    customAnvil
-  ],
+  chains: [ACTIVE_NETWORK],
   ssr: false, // If your dApp uses server side rendering (SSR)
 });
 export const allChains = config.chains;

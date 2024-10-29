@@ -9,7 +9,6 @@ import { useAccount } from 'wagmi';
 export const useUserOneCTData = () => {
   const { activeChain } = useActiveChain();
   const activeChainId = activeChain?.id;
-  console.log('activeChainId,', activeChainId)
   const { address: userAddress } = useAccount();
   const { data: productNames } = useProductName();
   const toastify = useToast();

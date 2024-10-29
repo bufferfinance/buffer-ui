@@ -66,7 +66,6 @@ export const useCall2Data = (contracts: any, swrKey: string) => {
   const { cache } = useSWRConfig();
 
   const key = swrKey + activeChain.id + account + chainInURL;
-  console.log('activechain',activeChain)
   const client = useMemo(() => {
     return createPublicClient({
       chain: activeChain,
@@ -85,9 +84,9 @@ export const useCall2Data = (contracts: any, swrKey: string) => {
         client,
         swrKey + activeChain.id + account
       );
-      if (swrKey.includes('trade')) {
-        console.log('key-res', returnData)
-      }
+      // if (swrKey.includes('trade')) {
+      //   console.log('key-res', returnData)
+      // }
       return returnData || cache.get(key);
     },
     refreshInterval: 900,

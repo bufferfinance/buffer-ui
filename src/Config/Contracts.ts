@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { defineChain } from 'viem';
+import { arbitrum } from 'viem/chains';
 
 export const ContractsConfig = {
   421614: {
@@ -181,7 +183,7 @@ export const ContractsConfig = {
       },
     },
   },
-  998: {
+  998:{
     graph: {
       ABOVE_BELOW:
         'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/v2.6-arbitrum-one/version/v0.0.6-ab-add-usd-values/api',
@@ -196,47 +198,73 @@ export const ContractsConfig = {
         'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/arbitrum-mainnet/version/v2.7.2-v2.6-profile-data/api',
       LP: 'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/mainnet-dummy/version/v0.0.6-lp-price-fix/api',
     },
-    signer_manager: '0xdc43CeA44593F9054BB52b7161981918ABdE067a',
+    signer_manager: '0x1332fE9C9C639dC9FDC388E23C99c5fa57dD6392',
     ab: {
       router: '0x94582981c3be6092b912265C2d2cE172e7f9c3B1',
     },
     ud: {
-      router: '0xf4cc4978C5d80945364fBdBD3750429505ADeB89',
+      router: '0x2eaB5Cc56e63A7D6B0afD261c48638F68b3F6DCf',
     },
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-      "0xA4fcbfbFFc7feEaAc50f804fc88Df0fb5CF2362B": {
-        tokenAddress: '0xf9b92Fde16c458953a479464e46F4ddf3B0B183e',
-        faucet: null,
+      "0x33E8ef2965427d37c9e9E4BcfbD7828A49697df2": {
+        tokenAddress: '0x7ef4C0b2a5556E30d52B731bA40F27E07cFe1B6b',
+        faucet: "0xf92A6cB632F06D220c4B9149F8d3dC802cB2C146",
         decimals: 6,
         token: 'USDC',
-        permitName: 'USD Coin',
+        permitName: 'USDC',
         is_pol: false,
       },
-      "0xf9b92Fde16c458953a479464e46F4ddf3B0B183e": {
-        tokenAddress: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
-        faucet: null,
-        decimals: 6,
-        token: 'USDC',
-        permitName: 'USD Coin',
-        is_pol: false,
-      },
-      '0x70086DFD2b089359A6582A18D24aBE1AcE40f8D0': {
-        tokenAddress: '0x9132016099CEbb740db64A36da0D3307824Ad159',
-        faucet: '0x62Db9CD484b3B59e1d0444cea1f0D0D3c00bf2F5',
-        decimals: 18,
-        token: 'BFR',
-        permitName: 'Token',
-        is_pol: false,
-      },
-      '0xaE0628C88EC6C418B3F5C005f804E905f8123833': {
-        tokenAddress: '0x912CE59144191C1204E64559FE8253a0e49E6548',
+      "0x312A8a9bAfa9Aa7f8Ea32A38e4028Ad36F146713": {
+        tokenAddress: '0xaf28ebB718a69E2Ed3a1b7bF3e00Cc5c66a5F64a',
         faucet: '0x6B655D99962F58B9Aa0fFB18281408CdBCf61800',
         decimals: 18,
         token: 'ARB',
         permitName: 'Arbitrum',
         is_pol: false,
+      }
+    },
+  },
+  9988: {
+    graph: {
+      ABOVE_BELOW:
+        'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/v2.6-arbitrum-one/version/v0.0.6-ab-add-usd-values/api',
+      MAIN: 'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/v2.6-arbitrum-one/version/v0.0.4-ud-trades-markets/api',
+      EVENTS:
+        'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/events/version/v2.5-up-events-mainnet/api',
+      REWARDS: `https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/jackpot/api`,
+      LEADERBOARD: `https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/mainnet-dummy/version/v0.0.11-leaderboard-price-fix/api`,
+      DASHBOARD:
+        'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/v2.5-arbitrum-mainnet/version/v2.9.1-ud-ab-nfts-leagues-stats-defillama-merge/api',
+      PROFILE:
+        'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/arbitrum-mainnet/version/v2.7.2-v2.6-profile-data/api',
+      LP: 'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/mainnet-dummy/version/v0.0.6-lp-price-fix/api',
+    },
+    signer_manager: '0x1332fE9C9C639dC9FDC388E23C99c5fa57dD6392',
+    ab: {
+      router: '0x94582981c3be6092b912265C2d2cE172e7f9c3B1',
+    },
+    ud: {
+      router: '0x2eaB5Cc56e63A7D6B0afD261c48638F68b3F6DCf',
+    },
+    jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
+    poolsInfo: {
+      "0x33E8ef2965427d37c9e9E4BcfbD7828A49697df2": {
+        tokenAddress: '0x7ef4C0b2a5556E30d52B731bA40F27E07cFe1B6b',
+        faucet: null,
+        decimals: 6,
+        token: 'USDC',
+        permitName: 'USDC',
+        is_pol: false,
       },
+      "0x312A8a9bAfa9Aa7f8Ea32A38e4028Ad36F146713": {
+        tokenAddress: '0xaf28ebB718a69E2Ed3a1b7bF3e00Cc5c66a5F64a',
+        faucet: '0x6B655D99962F58B9Aa0fFB18281408CdBCf61800',
+        decimals: 18,
+        token: 'ARB',
+        permitName: 'Arbitrum',
+        is_pol: false,
+      }
     },
   },
 };
@@ -246,4 +274,7 @@ export const pdev = axios.create({
 // Dev Server Client
 export const dsc = axios.create({
   baseURL: 'http://localhost:4004/',
+});
+export const mainClient = axios.create({
+  baseURL: 'https://apis-production-d798.up.railway.app/',
 });

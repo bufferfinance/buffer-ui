@@ -70,7 +70,6 @@ const useOneCTWallet = () => {
   const [createLoading, setCreateLoading] = useAtom(createLoadingAtom);
   const { activeChain } = uesOneCtActiveChain();
   const configData = getConfig(activeChain.id);
-  console.log('configdata', configData)
   const provider = usePublicClient({ chainId: activeChain.id });
   const setModal = useSetAtom(isOneCTModalOpenAtom);
   const [shouldStartTimer, setShouldStartTimer] = useState(false);

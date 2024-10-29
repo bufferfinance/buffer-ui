@@ -589,7 +589,7 @@ export const defaultMarket = 'BTC-USD';
 export const PRICE_DECIMALS = 1e8;
 export const isTestnet = import.meta.env.VITE_ENV.toLowerCase() === 'testnet';
 export const ABBaseURL = isDevnet
-  ? 'http://localhost:4004/'
+  ? 'https://apis-production-d798.up.railway.app/'
   : 'https://api-v2.6.buffer.finance/';
 export const aboveBelowBaseUrl = ABBaseURL;
 

@@ -114,6 +114,6 @@ export function useBuyTradePageReadcalls() {
     return [...userSpecificCalls, ...optionCalls!];
   }, [poolDetails, address, config]);
   const data = useCall2Data(calls, 'trade-page-callls' + address);
-  console.log('deb-2', calls, data)
+  // console.log('deb-2', calls, data)
   return data;
 }
