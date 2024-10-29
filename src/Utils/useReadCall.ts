@@ -66,9 +66,8 @@ export const useCall2Data = (contracts: any, swrKey: string) => {
   const { cache } = useSWRConfig();
 
   const key = swrKey + activeChain.id + account + chainInURL;
-
+  console.log('activechain',activeChain)
   const client = useMemo(() => {
-    console.log('activecahin', activeChain)
     return createPublicClient({
       chain: activeChain,
       transport: http(activeChain.rpcUrls.default.http[0]),

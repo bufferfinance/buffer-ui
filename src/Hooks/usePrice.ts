@@ -30,7 +30,7 @@ export const usePrice = () => {};
 export const usePriceRetriable = () => {
   const setPrice = useSetAtom(priceAtom);
   const pp = useAtomValue(priceAtom);
-  console.log('cdrs',pp)
+  // console.log('cdrs',pp)
   const [isConnected, setIsConnected] = useState(client.isConnected());
   const { activeMarket } = useActiveMarket();
   const activeMarketRef = useRef('BTCUSD');

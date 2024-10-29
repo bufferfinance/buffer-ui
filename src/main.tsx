@@ -114,11 +114,15 @@ if (import.meta.env.VITE_MODE === 'production') {
   });
 }
 
-
 let customAnvil = JSON.parse(JSON.stringify(arbitrum));
 customAnvil.rpcUrls.default.http = ['http://localhost:2020'];
-customAnvil.name = "arbitrum-main-fork";
-customAnvil.id = 42161121;
+customAnvil.name = "hyper-liquidity";
+customAnvil.id = 998;
+// let customAnvil = JSON.parse(JSON.stringify(arbitrum));
+// customAnvil.rpcUrls.default.http = ['http://localhost:2020'];
+// customAnvil.name = "arbitrum-main-fork";
+// customAnvil.id = 42161121;
+// customAnvil.contracts.multicall3 = '0xe4b0e88A17A9e7668233417892DA36d9c8316243'
 
 const config = getDefaultConfig({
   appName: 'My RainbowKit App',
