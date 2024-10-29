@@ -23,11 +23,18 @@ import React, { ReactNode, SVGProps, useEffect, useRef } from 'react';
 import { useMedia } from 'react-use';
 import { snackAtom } from '../../../App';
 import { getAddress } from 'viem';
-import { useAccount, useBalance, useDisconnect, usePublicClient } from 'wagmi';
+import {
+  useAccount,
+  useBalance,
+  useBlockNumber,
+  useDisconnect,
+  usePublicClient,
+} from 'wagmi';
 import * as chain from 'wagmi/chains';
 import ETHImage from '../../../../public/tokens/ETH.png';
 import { Display } from '../Tooltips/Display';
 import { BlueBtn } from '../V2-Button';
+import { useQueryClient } from '@tanstack/react-query';
 const token2image = {
   ETH: ETHImage,
 };
@@ -459,16 +466,22 @@ const TokenAccountBalance = () => {
   let activePoolDetails = pools[activePool];
   if (activePoolDetails === undefined) activePoolDetails = pools['USDC.E'];
   const { address } = useAccount();
-  const { data, isError, isLoading, error } = useBalance({
+  const queryClient = useQueryClient();
+
+  const { data: blockNumber } = useBlockNumber({ watch: true });
+  const { data: balance, queryKey } = useBalance({
     address,
     token: activePoolDetails?.tokenAddress,
-    watch: true,
   });
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey });
+  }, [blockNumber, queryClient]);
 
   return (
     <div className="flex items-center">
       {' '}
-      <Display data={data?.formatted} className="text-f14" />{' '}
+      <Display data={balance?.formatted} className="text-f14" />{' '}
       <img
         src={`https://res.cloudinary.com/dtuuhbeqt/image/upload/w_50,h_50,c_fill,r_max/Assets/${activePoolDetails.token.toLowerCase()}.png`}
         className="w-[16px] h-[16px] ml-2"
