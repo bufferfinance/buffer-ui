@@ -53,6 +53,7 @@ const chaintoIcon: {
 } = {
   421614:
     'https://res.cloudinary.com/dtuuhbeqt/image/upload/v1634668056/Assets/arbitrum.png',
+  998: 'https://app.hyperliquid.xyz/images/blob_green.svg',
 };
 export const AccountDropdown: React.FC = () => {
   const { address } = useUserAccount();

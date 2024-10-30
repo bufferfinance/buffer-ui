@@ -143,7 +143,7 @@ export const SUPPORTED_CHAINS = {
   'arb-dev': arbFork,
   hl: defineChain({
     id: 998,
-    name: 'Hyperliquid-Devent',
+    name: 'Hyperliquid-Testnet',
     nativeCurrency: {
       decimals: 18,
       name: 'Test Hyper',

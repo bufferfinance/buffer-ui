@@ -6,17 +6,27 @@ import { useEffect, useRef, useState } from 'react';
 import { Market2Prices } from 'src/Types/Market';
 import { reconnectingSocket } from './wsclient';
 import { useActiveMarket } from '@Views/TradePage/Hooks/useActiveMarket';
+
+type PerpsAssetCtx = SharedAssetCtx & {
+  funding: number;
+  openInterest: number;
+  oraclePx: number;
+};
+type SharedAssetCtx = {
+  dayNtlVlm: number;
+  prevDayPx: number;
+  markPx: number;
+  midPx?: number;
+};
+
+
+interface WsActiveAssetCtx {
+  coin: string;
+  ctx: PerpsAssetCtx;
+}
 type WSUPdate = {
-  channel: 'trades';
-  data: {
-    "coin": "BTC",
-    "side": "A" | "B",
-    "px": string,
-    "sz":string,
-    "time": number,
-    "hash": `0x${string}`
-    "tid": number
-}[]
+  channel: 'activeAssetCtx';
+  data: WsActiveAssetCtx;
 };
 
 // Production = wss://bufferf-pythnet-4e5a.mainnet.pythnet.rpcpool.com/hermes/ws
@@ -70,21 +80,26 @@ export const usePriceRetriable = () => {
       
       
       */
-      const lastJsonMessage:WSUPdate = JSON.parse(message);
-      console.log('lastJsonMessage',lastJsonMessage)
+     
+     const lastJsonMessage:WSUPdate = JSON.parse(message);
+     console.log('lastJsonMessage',lastJsonMessage)
       if (!lastJsonMessage) return;
-      if ((lastJsonMessage)?.channel == 'trades') {
+      if ((lastJsonMessage)?.channel == 'activeAssetCtx') {
         
-        const lastUpdate = lastJsonMessage.data[lastJsonMessage.data.length-1];
+        const lastUpdate = lastJsonMessage.data.ctx;
+        console.log('lastJsonMessage.data.',lastJsonMessage.data)
+        console.log('lastUpdate',lastUpdate)
         const parsedPriceUpdate = [{
-          time: lastUpdate.time,
-          price: lastUpdate.px,
+          time: Math.floor(Date.now()/1000),
+          price: lastUpdate.oraclePx,
           volume:0
         }];
+        console.log('parsedPriceUpdate',parsedPriceUpdate)
         const data = {
           'BTCUSD': parsedPriceUpdate
         };
         silentPriceCache['BTCUSD'] = parsedPriceUpdate
+        
         // const asset = Object.keys(data)[0];
         // console.log('ws-deb:msg',parsedPriceUpdate );
         
@@ -104,7 +119,7 @@ export const usePriceRetriable = () => {
       });
       const hlmsg = JSON.stringify({
         method: 'subscribe',
-        subscription: { type: 'trades', coin: 'BTC' },
+        subscription: { type: 'activeAssetCtx', coin: 'BTC' },
       });
 
       console.log('ws-deb', wsMsg);
