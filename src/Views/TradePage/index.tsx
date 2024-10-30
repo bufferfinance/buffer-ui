@@ -65,7 +65,7 @@ const TradePage: React.FC<any> = ({}) => {
           <>
             <RightPanelBackground>
               {showFavoriteAsset && <PinnedMarkets />}
-              <MarketStatsBar />
+              {/* <MarketStatsBar /> */}
               <MarketChart />
               <AccordionTable />
             </RightPanelBackground>
