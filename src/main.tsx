@@ -114,15 +114,13 @@ if (import.meta.env.VITE_MODE === 'production') {
   });
 }
 
-
-
-const LOCAL_ANVIL =[ "http://localhost:2020"];
+const LOCAL_ANVIL = ['http://localhost:2020'];
 const arbFork = JSON.parse(JSON.stringify(arbitrum));
-arbFork.rpcUrls.default.http =LOCAL_ANVIL;
-arbFork.name = "Arbitrum-Fork";
+arbFork.rpcUrls.default.http = LOCAL_ANVIL;
+arbFork.name = 'Arbitrum-Fork';
 arbFork.id = 42161121;
 export const SUPPORTED_CHAINS = {
-  'hl-dev':defineChain({
+  'hl-dev': defineChain({
     id: 9988,
     name: 'Hyperliquid-Devent',
     nativeCurrency: {
@@ -141,8 +139,9 @@ export const SUPPORTED_CHAINS = {
       },
     },
   }),
-  'arb-dev':arbFork,
-  'hl':defineChain({
+  //
+  'arb-dev': arbFork,
+  hl: defineChain({
     id: 998,
     name: 'Hyperliquid-Devent',
     nativeCurrency: {
@@ -152,7 +151,7 @@ export const SUPPORTED_CHAINS = {
     },
     rpcUrls: {
       default: {
-        http: ["https://api.hyperliquid-testnet.xyz/evm"],
+        http: ['https://api.hyperliquid-testnet.xyz/evm'],
       },
     },
     contracts: {
@@ -161,8 +160,8 @@ export const SUPPORTED_CHAINS = {
       },
     },
   }),
-}
-const ACTIVE_NETWORK = SUPPORTED_CHAINS['hl']
+};
+const ACTIVE_NETWORK = SUPPORTED_CHAINS['hl'];
 const config = getDefaultConfig({
   appName: 'My RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',
