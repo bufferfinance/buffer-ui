@@ -305,6 +305,55 @@ export const getTabs = (
       subTabs: [],
       isExternalLink: false,
     },
+    {
+      to: `/faucet`,
+      name: 'Faucet',
+      subTabs: [],
+      isExternalLink: false,
+    },
+
+    {
+      to: 'https://twitter.com/Buffer_Finance',
+      name: 'Twitter',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://github.com/Buffer-Finance',
+      name: 'Github',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://docs.buffer.finance/readme',
+      name: 'Docs',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://www.youtube.com/@BufferFinance/',
+      name: 'YouTube',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://discord.com/invite/Hj4QF92Kdc',
+      name: 'Discord',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://t.me/bufferfinance',
+      name: 'Telegram',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://mirror.xyz/0xc730FbdFEb3e9dF76008A19962963cA4A2bd8de2',
+      name: 'Mirror',
+      subTabs: [],
+      isExternalLink: true,
+    },
   ];
 };
 export const getMobileTabs = (
@@ -318,7 +367,6 @@ export const getMobileTabs = (
   icon: JSX.Element;
 }[] => {
   const market = marketFromStorage || defaultMarket;
-
   return [
     {
       to: `/binary/` + market,
@@ -326,6 +374,21 @@ export const getMobileTabs = (
       subTabs: [],
       isExternalLink: false,
       icon: TabIcon.Trade,
+    },
+    {
+      to: `/history`,
+      name: 'Activity',
+      subTabs: [],
+      isExternalLink: false,
+      icon: TabIcon.History,
+      mobileOnly: true,
+    },
+    {
+      to: `/faucet`,
+      name: 'Faucet',
+      subTabs: [],
+      isExternalLink: false,
+      icon: TabIcon.Faucet,
     },
   ];
 };
