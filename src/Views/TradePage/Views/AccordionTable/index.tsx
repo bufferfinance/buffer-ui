@@ -31,7 +31,7 @@ import { OldVersionTradesRedirect } from '@Views/TradePage/config';
 const OngoingTradesTableMemo = React.memo(OngoingTradesTable);
 const tables = {
   Trades: 'h',
-  'Limit Orders': 'h',
+  // 'Limit Orders': 'h',
   History: 'h',
   Cancelled: 'h',
   'Platform Trades': 'h',

@@ -16,9 +16,7 @@ export const ActiveTrades: React.FC<{ isMobile?: boolean; sm?: boolean }> = ({
   isMobile,
   sm,
 }) => {
-  const tableTypes = sm
-    ? ['Trades', 'Limit Orders']
-    : ['Up/Down', 'Above/Below', 'Limit Orders'];
+  const tableTypes = ['Open Trades'];
   const [tableType, setTableType] = useState(tableTypes[0]);
   const [activeTrades, limitOrderTrades] = useOngoingTrades();
   const setIsTableShown = useSetAtom(isTableShownAtom);
@@ -38,7 +36,7 @@ export const ActiveTrades: React.FC<{ isMobile?: boolean; sm?: boolean }> = ({
   if (!trades) return <div>Loading...</div>;
   return (
     <>
-      <div className="w-full b1200:sticky b1200:top-[0px] b1200:z-50 bg-[#282b39] flex justify-evenly text-f14 rounded-t-[8px] py-[8px]  mt-3">
+      <div className="w-full b1200:sticky b1200:top-[0px] b1200:z-50 bg-[#282b39] flex justify-between px-4 text-f14 rounded-t-[8px] py-[8px]  mt-3">
         {tableTypes.map((s) => {
           return (
             <div

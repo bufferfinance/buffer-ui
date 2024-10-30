@@ -115,7 +115,7 @@ export const BuyTrade: React.FC = () => {
       <TimeSelector />
       <TradeSizeSelector payout={payout} />
       {/* <TradeTypeSelector /> */}
-      <CurrentPrice />
+      {/* <CurrentPrice /> */}
       {/* <PayoutProfit
         amount={zeroify(amount)}
         totalPayout={payout}
