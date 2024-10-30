@@ -21,14 +21,15 @@ const IbfrFaucet: React.FC = () => {
 
   const { poolDisplayNameMapping } = usePoolDisplayNames();
   const tokenChains = useMemo(() => {
-    return Object.keys(poolDisplayNameMapping).filter(
-      (token) => !token.includes('-POL') && token !== 'BFR'
-    );
+    return Object.keys(poolDisplayNameMapping)
+      .splice(0, 1)
+      .filter((token) => !token.includes('-POL') && token !== 'BFR');
   }, [poolDisplayNameMapping]);
 
   const content = activeChain && [
     {
-      top: `Claim TESTNET Tokens`,
+      top: `Claim Test USDC tokens`,
+      middle: 'Fee: 0.001 TESTH ',
       bottom: (
         <ConnectionRequired>
           <div className="flex items-center justify-center gap-3 flex-wrap">
@@ -140,52 +141,4 @@ const faucetClaimingSteps = {
   },
 };
 
-const TestnetLinks = () => {
-  const { activeChain } = useActiveChain();
-  return (
-    <div>
-      {faucetClaimingSteps[activeChain.id].faucet.map((s, idx) => {
-        if (s.options)
-          return (
-            <div
-              key={s.url}
-              className="whitespace-nowrap sm:max-w-[250px] text-ellipsis overflow-hidden"
-            >
-              {faucetClaimingSteps[activeChain.id].faucet.length === 1
-                ? ''
-                : idx + 1 + '.'}
-              <span className="w-full">
-                {s.step}
-                {s.options && (
-                  <div className="ml-7">
-                    {s.options.map((option, index) => (
-                      <div key={option.url}>
-                        {index + 1 + '.'}
-                        <a href={option.url} target="_blank">
-                          {option.step}
-                        </a>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </span>
-            </div>
-          );
-        else
-          return (
-            <div
-              key={s.url}
-              className="whitespace-nowrap sm:max-w-[250px] text-ellipsis overflow-hidden"
-            >
-              <span className="w-full">
-                <a href={s.url || s} target="_blank">
-                  {s.step || s}
-                </a>
-              </span>
-            </div>
-          );
-      })}
-    </div>
-  );
-};
 export default IbfrFaucet;
