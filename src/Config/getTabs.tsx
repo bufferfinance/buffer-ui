@@ -298,283 +298,147 @@ export const getTabs = (
   isExternalLink: boolean;
 }[] => {
   const market = marketFromStorage || defaultMarket;
-  if (import.meta.env.VITE_ENV.toUpperCase() === 'MAINNET') {
-    return [
-      {
-        to: `/ab/` + market,
-        name: 'Trade',
-        subTabs: [],
-        isExternalLink: false,
-      },
+  return [
+    {
+      to: `/binary/` + market,
+      name: 'Trade',
+      subTabs: [],
+      isExternalLink: false,
+    },
+    {
+      to: `/faucet`,
+      name: 'Faucet',
+      subTabs: [],
+      isExternalLink: false,
+    },
+    // {
+    //   to: `/referral`,
+    //   name: 'Referral',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
 
-      {
-        to: `/referral`,
-        name: 'Referral',
-        subTabs: [],
-        isExternalLink: false,
-      },
-      {
-        to: `/profile`,
-        name: 'Profile',
-        subTabs: [],
-        isExternalLink: false,
-      },
-      // {
-      //   to: '/ab/' + market,
-      //   name: 'Above/Below',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
+    // {
+    //   to: `/profile`,
+    //   name: 'Profile',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
+    // {
+    //   to: '/ab/BTC-USD/',
+    //   name: 'Above/Below',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
 
-      {
-        to: `https://earn.buffer.finance/`,
-        name: 'Earn',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      //ddd
-      // {
-      //   to: `/jackpot`,
-      //   name: 'Jackpot',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
-      {
-        to: `/lp-rewards`,
-        name: 'LP Boost',
-        subTabs: [],
-        isExternalLink: false,
-      },
-      {
-        to: '/rewards',
-        name: 'Rewards',
-        subTabs: [],
-        isExternalLink: false,
-      },
-      {
-        to: `/leaderboard/daily`,
-        name: 'Competitions',
-        subTabs: [],
-        isExternalLink: false,
-      },
+    // {
+    //   to: `/Jackpot`,
+    //   name: 'Jackpot',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
 
-      // {
-      //   to: `https://testnet.buffer.finance/`,
-      //   name: 'Practice Trading',
-      //   subTabs: [],
-      //   isExternalLink: true,
-      // },
-      // {
-      //   to: `/dashboard`,
-      //   name: 'Dashboard',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
-      {
-        to: `https://optopi.buffer.finance/`,
-        name: 'Optopi NFT',
-        subTabs: [],
-        isExternalLink: true,
-      },
+    // {
+    //   to: `/lp-rewards`,
+    //   name: 'LP Page',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
+    // {
+    //   to: '/rewards',
+    //   name: 'Rewards',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
+    // {
+    //   to: `/leaderboard/daily`,
+    //   name: 'Competitions',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
 
-      {
-        to: `https://stats.buffer.finance/`,
-        name: 'Stats',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      //ddd
-      {
-        to: 'https://perps.buffer.finance/trade',
-        name: 'Perps',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://twitter.com/Buffer_Finance',
-        name: 'Twitter',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://github.com/Buffer-Finance',
-        name: 'Github',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://docs.buffer.finance/',
-        name: 'Docs',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://www.youtube.com/@BufferFinance/',
-        name: 'YouTube',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://discord.com/invite/Hj4QF92Kdc',
-        name: 'Discord',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://t.me/bufferfinance',
-        name: 'Telegram',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://mirror.xyz/0xc730FbdFEb3e9dF76008A19962963cA4A2bd8de2',
-        name: 'Mirror',
-        subTabs: [],
-        isExternalLink: true,
-      },
-    ];
-  } else
-    return [
-      {
-        to: `/binary/` + market,
-        name: 'Trade',
-        subTabs: [],
-        isExternalLink: false,
-      },
-      {
-        to: `/faucet`,
-        name: 'Faucet',
-        subTabs: [],
-        isExternalLink: false,
-      },
-      // {
-      //   to: `/referral`,
-      //   name: 'Referral',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
+    // {
+    //   to: `/dashboard`,
+    //   name: 'Dashboard',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
 
-      // {
-      //   to: `/profile`,
-      //   name: 'Profile',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
-      // {
-      //   to: '/ab/BTC-USD/',
-      //   name: 'Above/Below',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
+    // {
+    //   to: `https://stats.buffer.finance/`,
+    //   name: 'Stats',
+    //   subTabs: [],
+    //   isExternalLink: true,
+    // },
 
-      // {
-      //   to: `/Jackpot`,
-      //   name: 'Jackpot',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
+    // {
+    //   to: `https://testnet-buffer-finance-git-v2-earn-production-bufferfinance.vercel.app/`,
+    //   name: 'Earn',
+    //   subTabs: [],
+    //   isExternalLink: true,
+    // },
+    {
+      to: `https://optopi.buffer.finance/`,
+      name: 'Optopi NFT',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    // {
+    //   to: 'https://testnet.perps.buffer.finance/trade',
+    //   name: 'Perps',
+    //   subTabs: [],
+    //   isExternalLink: true,
+    // },
+    {
+      to: 'https://twitter.com/Buffer_Finance',
+      name: 'Twitter',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://github.com/Buffer-Finance',
+      name: 'Github',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://docs.buffer.finance/readme',
+      name: 'Docs',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://www.youtube.com/@BufferFinance/',
+      name: 'YouTube',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://discord.com/invite/Hj4QF92Kdc',
+      name: 'Discord',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://t.me/bufferfinance',
+      name: 'Telegram',
+      subTabs: [],
+      isExternalLink: true,
+    },
+    {
+      to: 'https://mirror.xyz/0xc730FbdFEb3e9dF76008A19962963cA4A2bd8de2',
+      name: 'Mirror',
+      subTabs: [],
+      isExternalLink: true,
+    },
 
-      // {
-      //   to: `/lp-rewards`,
-      //   name: 'LP Page',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
-      // {
-      //   to: '/rewards',
-      //   name: 'Rewards',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
-      // {
-      //   to: `/leaderboard/daily`,
-      //   name: 'Competitions',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
-
-      // {
-      //   to: `/dashboard`,
-      //   name: 'Dashboard',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
-
-      // {
-      //   to: `https://stats.buffer.finance/`,
-      //   name: 'Stats',
-      //   subTabs: [],
-      //   isExternalLink: true,
-      // },
-
-      // {
-      //   to: `https://testnet-buffer-finance-git-v2-earn-production-bufferfinance.vercel.app/`,
-      //   name: 'Earn',
-      //   subTabs: [],
-      //   isExternalLink: true,
-      // },
-      {
-        to: `https://optopi.buffer.finance/`,
-        name: 'Optopi NFT',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      // {
-      //   to: 'https://testnet.perps.buffer.finance/trade',
-      //   name: 'Perps',
-      //   subTabs: [],
-      //   isExternalLink: true,
-      // },
-      {
-        to: 'https://twitter.com/Buffer_Finance',
-        name: 'Twitter',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://github.com/Buffer-Finance',
-        name: 'Github',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://docs.buffer.finance/readme',
-        name: 'Docs',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://www.youtube.com/@BufferFinance/',
-        name: 'YouTube',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://discord.com/invite/Hj4QF92Kdc',
-        name: 'Discord',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://t.me/bufferfinance',
-        name: 'Telegram',
-        subTabs: [],
-        isExternalLink: true,
-      },
-      {
-        to: 'https://mirror.xyz/0xc730FbdFEb3e9dF76008A19962963cA4A2bd8de2',
-        name: 'Mirror',
-        subTabs: [],
-        isExternalLink: true,
-      },
-
-      // {
-      //   to: `/leaderboard/trades`,
-      //   name: 'All Trades',
-      //   subTabs: [],
-      //   isExternalLink: false,
-      // },
-    ];
+    // {
+    //   to: `/leaderboard/trades`,
+    //   name: 'All Trades',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
+  ];
 };
 export const getMobileTabs = (
   marketFromStorage: string
