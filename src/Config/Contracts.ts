@@ -205,6 +205,7 @@ export const ContractsConfig = {
     ud: {
       router: '0x2eaB5Cc56e63A7D6B0afD261c48638F68b3F6DCf',
     },
+    referral:"0x711515cb230dA44B6630EF9a82ceE2529492f4C8",
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
       "0x33E8ef2965427d37c9e9E4BcfbD7828A49697df2": {

@@ -310,7 +310,7 @@ export const appConfig = {
       },
     },
     multicall: '0xca11bde05977b3631167028862be2a173976ca11',
-    referral_storage: '0xFea57B9548cd72D8705e4BB0fa83AA35966D9c29',
+    referral_storage: ContractsConfig[998].referral,
     router: ContractsConfig[998].ud.router,
     signer_manager: ContractsConfig[998].signer_manager,
     booster: '0x1FE0A88372A75926dc26dFF369B0b3aC5569F669',

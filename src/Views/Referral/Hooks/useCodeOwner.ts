@@ -22,12 +22,7 @@ export function useCodeOwner(code: string) {
       transport: http(),
     });
   }, [activeChain]);
-  const referralContract = getContract({
-    address: referralAddress,
-    abi: ReferralABI,
-    signerOrProvider: provider,
-  });
-
+  console.log('ref-deb', referralAddress);
   const updateOwner = async () => {
     if (!code) return;
     const tempOwner = await publicClient.readContract({
@@ -36,6 +31,8 @@ export function useCodeOwner(code: string) {
       functionName: 'codeOwner',
       args: [code],
     });
+    console.log('ref-deb1', tempOwner);
+
     setOwner(tempOwner);
   };
   useDebouncedEffect(

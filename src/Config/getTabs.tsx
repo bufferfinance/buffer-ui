@@ -311,6 +311,12 @@ export const getTabs = (
       subTabs: [],
       isExternalLink: false,
     },
+    {
+      to: `/referral`,
+      name: 'Referral',
+      subTabs: [],
+      isExternalLink: false,
+    },
 
     {
       to: 'https://twitter.com/Buffer_Finance',
