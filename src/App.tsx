@@ -352,8 +352,7 @@ const contents = {
       href="https://mirror.xyz/0xc730FbdFEb3e9dF76008A19962963cA4A2bd8de2/ao87r3b-1Apd_3SAknXX-rHlhspngxCvscaX5vk4JCI"
       target="_blank"
     >
-      💰13 weeks, 5 leagues competing for the ultimate prize ✨19,724 ARB ✨
-      Learn More&nbsp; <MemoExternalLinkSVG />
+      Testnet is live on HyperLiquid!!
     </a>
   ),
   leaderboard: (

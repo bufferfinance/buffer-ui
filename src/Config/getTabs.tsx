@@ -325,11 +325,12 @@ export const getTabs = (
       isExternalLink: true,
     },
     {
-      to: 'https://github.com/Buffer-Finance',
-      name: 'Github',
+      to: 'https://t.me/bufferfinance',
+      name: 'Telegram',
       subTabs: [],
       isExternalLink: true,
     },
+
     {
       to: 'https://docs.buffer.finance/readme',
       name: 'Docs',
@@ -349,8 +350,8 @@ export const getTabs = (
       isExternalLink: true,
     },
     {
-      to: 'https://t.me/bufferfinance',
-      name: 'Telegram',
+      to: 'https://github.com/Buffer-Finance',
+      name: 'Github',
       subTabs: [],
       isExternalLink: true,
     },
