@@ -243,7 +243,7 @@ export const ContractsConfig = {
     },
     signer_manager: '0x1332fE9C9C639dC9FDC388E23C99c5fa57dD6392',
     ab: {
-      router: '0xD4FF4AC5AeB6148D409AD14F153EF4d400901D53',
+      router: '0x03118E014F75A09BE1c6522c6f5f411980f9a000',
     },
     ud: {
       router: '0x2eaB5Cc56e63A7D6B0afD261c48638F68b3F6DCf',
@@ -287,4 +287,4 @@ export const dsc = axios.create({
 export const mainClient = axios.create({
   baseURL: 'https://apis-production-d798.up.railway.app/',
 });
-// 0xD4FF4AC5AeB6148D409AD14F153EF4d400901D53
+// 0x03118E014F75A09BE1c6522c6f5f411980f9a000

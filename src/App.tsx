@@ -367,6 +367,7 @@ const contents = {
     </a>
   ),
 };
+// 0x03118E014F75A09BE1c6522c6f5f411980f9a000
 const MAX_GAS_PRICE = 35000000n;
 function App() {
   useAutoConnect();
