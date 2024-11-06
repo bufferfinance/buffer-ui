@@ -1,6 +1,5 @@
 import { useActiveChain } from '@Hooks/useActiveChain';
 import { marketsForChart } from '@Views/ABTradePage/config';
-import { getConfig } from '@Views/ABTradePage/utils/getConfig';
 import axios from 'axios';
 import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -11,6 +10,7 @@ import {
   aboveBelowmarketsSetterAtom,
 } from '../atoms';
 import { marketTypeAB, responseAB } from '../types';
+import { getConfig } from '@Views/TradePage/utils/getConfig';
 
 //fetches all markets from graphql
 export const useAboveBelowMarketsSetter = () => {
@@ -18,7 +18,7 @@ export const useAboveBelowMarketsSetter = () => {
   const configData = getConfig(activeChain.id);
   const setMarkets = useSetAtom(aboveBelowmarketsSetterAtom);
   const setAllMarkets = useSetAtom(aboveBelowAllMarketsSetterAtom);
-
+  console.log('configData',indexer_url)
   async function fetcher(): Promise<{
     optionContracts: responseAB[];
     allContracts: responseAB[];

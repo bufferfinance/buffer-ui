@@ -465,7 +465,7 @@ const TokenAccountBalance = () => {
   const { activePool } = useAtomValue(activePoolObjAtom);
   const pools = usePoolByAsset();
   let activePoolDetails = pools[activePool];
-  if (activePoolDetails === undefined) activePoolDetails = pools['USDC.E'];
+  if (activePoolDetails === undefined) activePoolDetails = pools['USDC'];
   const { address } = useAccount();
   const queryClient = useQueryClient();
 

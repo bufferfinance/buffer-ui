@@ -63,7 +63,7 @@ export const useV2Markets = () => {
 export const useBothVersionsMarkets = () => {
   const { activeChain } = useActiveChain();
   const configData = getConfig(activeChain.id);
-
+  console.log('configdata',configData,indexer_url)
   async function fetcher(): Promise<response> {
     const response = await axios.post(indexer_url, {
       query: `{ 

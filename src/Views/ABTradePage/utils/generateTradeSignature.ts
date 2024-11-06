@@ -178,6 +178,7 @@ const generateApprovalSignature = async (
     },
     message: approveMessage,
   } as const;
+  console.log('approve-deb',approveSignatureParams)
   const res = await signMethod(approveSignatureParams);
 
   return [res, getRSVFromSignature(res)];

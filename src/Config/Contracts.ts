@@ -243,7 +243,7 @@ export const ContractsConfig = {
     },
     signer_manager: '0x1332fE9C9C639dC9FDC388E23C99c5fa57dD6392',
     ab: {
-      router: '0x94582981c3be6092b912265C2d2cE172e7f9c3B1',
+      router: '0xD4FF4AC5AeB6148D409AD14F153EF4d400901D53',
     },
     ud: {
       router: '0x2eaB5Cc56e63A7D6B0afD261c48638F68b3F6DCf',
@@ -266,6 +266,14 @@ export const ContractsConfig = {
         permitName: 'Arbitrum',
         is_pol: false,
       }
+      // "0x0D8Ea07994838b8672449355553820f1BEF11F72": {
+      //   tokenAddress: '0x214BdaF1111296d7fe28f529c4265EAf13A550D7',
+      //   faucet: null,
+      //   decimals: 6,
+      //   token: 'USDC',
+      //   permitName: 'USDC',
+      //   is_pol: false,
+      // }
     },
   },
 };
@@ -279,3 +287,4 @@ export const dsc = axios.create({
 export const mainClient = axios.create({
   baseURL: 'https://apis-production-d798.up.railway.app/',
 });
+// 0xD4FF4AC5AeB6148D409AD14F153EF4d400901D53
