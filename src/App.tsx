@@ -349,7 +349,7 @@ const contents = {
   default: (
     <a
       className="flex items-baseline cursor-pointer"
-      href="https://mirror.xyz/0xc730FbdFEb3e9dF76008A19962963cA4A2bd8de2/ao87r3b-1Apd_3SAknXX-rHlhspngxCvscaX5vk4JCI"
+      href="https://x.com/Buffer_Finance/status/1854599229899255899"
       target="_blank"
     >
       Testnet is live on HyperLiquid!!
