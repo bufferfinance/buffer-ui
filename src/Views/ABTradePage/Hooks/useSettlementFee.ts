@@ -20,6 +20,7 @@ export const useSettlementFee = () => {
       const response = await axios.get(
         baseUrl + `settlement_fee/?environment=${activeChain.id}`
       );
+      console.log('sfdeb',response?.data)
       if (response?.data) {
         return response.data;
       }
