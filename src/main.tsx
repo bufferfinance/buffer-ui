@@ -161,7 +161,7 @@ export const SUPPORTED_CHAINS = {
     },
   }),
 };
-const ACTIVE_NETWORK = SUPPORTED_CHAINS[isDevnet ? 'hl-dev' : 'hl'];
+const ACTIVE_NETWORK = SUPPORTED_CHAINS['hl'];
 const config = getDefaultConfig({
   appName: 'My RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',

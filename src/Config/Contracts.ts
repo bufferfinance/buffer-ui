@@ -198,26 +198,26 @@ export const ContractsConfig = {
         'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/arbitrum-mainnet/version/v2.7.2-v2.6-profile-data/api',
       LP: 'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/mainnet-dummy/version/v0.0.6-lp-price-fix/api',
     },
-    signer_manager: '0xCc8E81D71c4cBcA79a19E007900d5c366F06382E',
+    signer_manager: '0x3721b36c57a7D5DcC8762227Ea6c8a6940701566',
     ab: {
-      router: '0x94582981c3be6092b912265C2d2cE172e7f9c3B1',
+      router: '0x8a78E199677820fcb2CB0097d9c506ACCE155D01',
     },
     ud: {
-      router: '0xCc8E81D71c4cBcA79a19E007900d5c366F06382E',
+      router: '0xF84083e11ABc5F79843cd798b5aF260dA2B3509d',
     },
     referral:"0x711515cb230dA44B6630EF9a82ceE2529492f4C8",
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-      "0x33E8ef2965427d37c9e9E4BcfbD7828A49697df2": {
-        tokenAddress: '0x7ef4C0b2a5556E30d52B731bA40F27E07cFe1B6b',
+      "0x61Be536127b50cC00664e15B101c328F559a1ca5": {
+        tokenAddress: '0xB6d812601b710a4CD9284e7AAbC2B092A7832ef3',
         faucet: "0xf92A6cB632F06D220c4B9149F8d3dC802cB2C146",
         decimals: 6,
         token: 'USDC',
         permitName: 'USDC',
         is_pol: false,
       },
-      "0xbe9a26bF0771bb8C8e69657F4E85a201420939F1": {
-        tokenAddress: '0x8909Fda0D59fe090D31887D2Ad54743183CA45EE',
+      "0x83942CCcda00fCae1B945e96A1B41BE2Ef517b30": {
+        tokenAddress: '0x24240B4DF6882277c2B214a196bf0A8437e71D5d',
         faucet: '0x6B655D99962F58B9Aa0fFB18281408CdBCf61800',
         decimals: 18,
         token: 'ARB',
@@ -282,9 +282,9 @@ export const pdev = axios.create({
 });
 // Dev Server Client
 export const dsc = axios.create({
-  baseURL: 'http://localhost:4004/',
+  baseURL: 'https://api-v2-production-cd16.up.railway.app/',
 });
 export const mainClient = axios.create({
-  baseURL: 'https://apis-production-d798.up.railway.app/',
+  baseURL: 'https://api-v2-production-cd16.up.railway.app/',
 });
 // 0x03118E014F75A09BE1c6522c6f5f411980f9a000
