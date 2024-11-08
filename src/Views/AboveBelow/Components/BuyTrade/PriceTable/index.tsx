@@ -317,7 +317,7 @@ export const PriceTable: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
         );
     }
   };
-  console.log(`index-strikes: `, strikes);
+  console.log(`index-strikes: `, strikes, currentPrice, activeMarket, strikes);
 
   if (!currentPrice || !activeMarket || !strikes)
     return (

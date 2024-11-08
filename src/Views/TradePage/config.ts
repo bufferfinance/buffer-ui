@@ -306,7 +306,7 @@ export const appConfig = {
         metaData: {},
         name: 'AB',
         product_id: 'xyz',
-        router: '0x94582981c3be6092b912265C2d2cE172e7f9c3B1',
+        router:ContractsConfig[998].ab.router,
       },
     },
     multicall: '0xca11bde05977b3631167028862be2a173976ca11',
@@ -319,7 +319,7 @@ export const appConfig = {
     jackpot:
       ContractsConfig?.[998]?.jackpot ||
       '0xEa0b956A04b265A7E2A6d00A4bD65a48C430cE16',
-    above_below_router: '0x94582981c3be6092b912265C2d2cE172e7f9c3B1',
+    above_below_router:ContractsConfig[998].ab.router,
     poolsInfo: ContractsConfig?.[998].poolsInfo,
 
     EarnConfig: {
@@ -387,7 +387,7 @@ export const appConfig = {
         metaData: {},
         name: 'AB',
         product_id: 'xyz',
-        router: '0x94582981c3be6092b912265C2d2cE172e7f9c3B1',
+        router:ContractsConfig[9988].ab.router,
       },
     },
     multicall: '0xca11bde05977b3631167028862be2a173976ca11',
@@ -400,7 +400,7 @@ export const appConfig = {
     jackpot:
       ContractsConfig?.[9988]?.jackpot ||
       '0xEa0b956A04b265A7E2A6d00A4bD65a48C430cE16',
-    above_below_router: '0x94582981c3be6092b912265C2d2cE172e7f9c3B1',
+    above_below_router:ContractsConfig[9988].ab.router,
     poolsInfo: ContractsConfig?.[9988].poolsInfo,
 
     EarnConfig: {

@@ -51,7 +51,8 @@ const config = defineConfig(({ command, mode }) => {
     define: {
       __APP_ENV__: env.APP_ENV,
       isDevnet: true,
-      indexer_url: JSON.stringify(env.APP_ENV1)
+      api_url:JSON.stringify(env.API_URL),
+      indexer_url: JSON.stringify(env.INDEXER_URL)
     },
   };
 });

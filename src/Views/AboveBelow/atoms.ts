@@ -54,11 +54,7 @@ export const selectedPoolActiveMarketAtom = atom<marketTypeAB | undefined>(
   (get) => {
     const allmarkets = get(aboveBelowActiveMarketsAtom);
     const selectedPool = get(setSelectedPoolForTradeAtom);
-    const markets = allmarkets.filter(
-      (market) =>
-        market.address != '0x23b5a99bc88377e22e67bdb25cf5b37559f65290' &&
-        market.address != '0x2a5fbcf0b11423fd7a94e48693adf9a2681ea527'
-    );
+    const markets = allmarkets;
     if (!markets) return undefined;
     return markets.find((market) => {
       if (market.poolInfo.token.toUpperCase() === selectedPool.toUpperCase())

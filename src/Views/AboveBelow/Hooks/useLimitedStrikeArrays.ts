@@ -40,7 +40,7 @@ export const useLimitedStrikeArrays = () => {
   const stepsize =
     stepFromConfig === undefined
       ? undefined
-      : divide(activeMarket?.configContract.stepSize ?? '0', 8) ?? '0';
+      : divide(activeMarket?.configContract.stepSize ?? '0', 1) ?? '0';
   const roundedPrice =
     stepsize === undefined ? 0 : getRoundedPrice(+currentPrice, +stepsize);
 

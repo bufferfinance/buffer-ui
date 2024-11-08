@@ -56,7 +56,7 @@ export const useSettlementFee = () => {
           ''
         );
         const periodInMinutes = currentTime.seconds / 60;
-        const response = await mainClient.get(
+        const response = await dsc.get(
           `settlement_fee/?environment=${activeChain.id}&product_id=${products.UP_DOWN.product_id}&queryPair=${activePair}`
         );
         // let response = {
