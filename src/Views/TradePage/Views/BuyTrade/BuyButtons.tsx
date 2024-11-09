@@ -295,7 +295,7 @@ export const DisplaySF = ({ settlementFee }) => {
   );
 };
 export const DisplayPayout = ({ settlementFee, amount, className }) => {
-  if (!settlementFee) return null;
+  if (!settlementFee || !amount) return null;
   let totalPayout = getPayout(settlementFee);
 
   totalPayout = totalPayout ? divide(add(totalPayout, '100'), '100') : '0';
