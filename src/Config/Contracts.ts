@@ -210,7 +210,7 @@ export const ContractsConfig = {
     poolsInfo: {
       "0x61Be536127b50cC00664e15B101c328F559a1ca5": {
         tokenAddress: '0xB6d812601b710a4CD9284e7AAbC2B092A7832ef3',
-        faucet: "0xf92A6cB632F06D220c4B9149F8d3dC802cB2C146",
+        faucet: "830d20474ffed8011030fa408a6dfcb3c01e46e0b0",
         decimals: 6,
         token: 'USDC',
         permitName: 'USDC',
