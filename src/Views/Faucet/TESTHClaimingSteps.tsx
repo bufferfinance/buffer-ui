@@ -72,7 +72,7 @@ export default function TESTHClaimingSetps() {
               ) : (
                 <p className="text-sm">
                   {step == 1
-                    ? 'Mock USDC is a token available for free, which can be used to buy holdings of assets on HL testnet.'
+                    ? 'Mock USDC is a token available for free, which can be used to buy holdings on HL testnet.'
                     : step == 2
                     ? 'TESTH is native GAS token on HL EVM.'
                     : 'd'}
