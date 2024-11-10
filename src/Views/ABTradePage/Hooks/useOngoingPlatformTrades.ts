@@ -39,12 +39,12 @@ export const usePlatformActiveTrades = () => {
         if (!markets || !productNames)
           return { page_data: undefined, total_pages: 1 };
 
-        if (
-          ![arbitrum.id, arbitrumGoerli.id, arbitrumSepolia.id].includes(
-            activeChain.id as 42161
-          )
-        )
-          return { page_data: [], total_pages: 1 };
+        // if (
+        //   ![arbitrum.id, arbitrumGoerli.id, arbitrumSepolia.id].includes(
+        //     activeChain.id as 42161
+        //   )
+        // )
+        //   return { page_data: [], total_pages: 1 };
         const res = await axios.get(`${aboveBelowBaseUrl}trades/all_active/`, {
           params: {
             user_address: address,

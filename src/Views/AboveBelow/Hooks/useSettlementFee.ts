@@ -21,6 +21,8 @@ export const useSettlementFee = () => {
           product_id: products['AB'].product_id,
         },
       });
+      console.log('sfdeb',response?.data)
+
       if (response?.data) {
         return response.data['sfs'];
       }

@@ -8,25 +8,10 @@ import useSWR from 'swr';
 export const useProductName = () => {
   const { activeChain } = useActiveChain();
 
-  return useSWR<{
-    [productName: string]: {
-      environment: string;
-      id: number;
-      product_id: string;
-    };
-  }>([activeChain?.id, 'above-below-product-name'], {
-    fetcher: async () => {
-      if (!activeChain) return undefined;
-      const response = await axios.get(aboveBelowBaseUrl + `products/`, {
-        params: { environment: activeChain.id },
-      });
-      if (response?.data) {
-        return response.data;
-      }
-      return null;
-    },
-    refreshInterval: 100000,
-  });
+  return useMemo(()=>({data:{
+    "UD":{product_id:"abc"},
+    "AB":{product_id:"xyz"},}
+  }),[])
 };
 export const useProducts = () => {
   const { activeChain } = useActiveChain();
