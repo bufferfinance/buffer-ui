@@ -17,9 +17,9 @@ export function EarnButtons({ cardNum }: { cardNum: number }) {
   const { activeChain } = useActiveChain();
   const [pageState] = useAtom(readEarnData);
   const { chain } = useNetwork();
-  const { withdraw, claimARB } = useEarnWriteCalls(
+  const { withdraw, claimARB, bfrVest2claim } = useEarnWriteCalls(
     'Vester',
-    cardNum === 4 ? 'BFR' : 'BLP'
+    cardNum === 4 ? 'BFR' : cardNum === 19 ? 'BFRv2' : 'BLP'
   );
   const toastify = useToast();
 
@@ -175,6 +175,35 @@ export function EarnButtons({ cardNum }: { cardNum: number }) {
             className={btnClasses}
           >
             Withdraw
+          </BlueBtn>
+        </div>
+      );
+    case 19:
+      return (
+        <div className="flex gap-5">
+          <BlueBtn
+            onClick={() =>
+              setPageState({
+                ...state,
+                activeModal: 'iBFRdepositV2',
+                isModalOpen: true,
+              })
+            }
+            className={btnClasses}
+          >
+            Deposit esBFR
+          </BlueBtn>
+          <BlueBtn
+            onClick={() =>
+              pageState.vest2?.ibfr.claimable !== '0'
+                ? bfrVest2claim()
+                : showToast(
+                    "You don't have any rewards to claim at the moment!."
+                  )
+            }
+            className={btnClasses}
+          >
+            Claim BFR
           </BlueBtn>
         </div>
       );

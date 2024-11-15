@@ -11,13 +11,15 @@ import { getContract } from '../Config/Address';
 
 export const useEarnWriteCalls = (
   contractType: 'Router' | 'Vester',
-  vesterType?: 'BLP' | 'BFR'
+  vesterType?: 'BLP' | 'BFR' | 'BFRv2'
 ) => {
   const { activeChain } = useActiveChain();
   const EarnRouterContract = getContract(activeChain?.id, 'RewardRouter');
   const EarnVesterContract =
     vesterType === 'BFR'
       ? getContract(activeChain?.id, 'BfrVester')
+      : vesterType === 'BFRv2'
+      ? getContract(activeChain?.id, 'BfrVesterV2')
       : getContract(activeChain?.id, 'BlpVester');
   const routerContract = { contract: EarnRouterContract, abi: EarnRouterABI };
   const vesterContract = { contract: EarnVesterContract, abi: VesterABI };
@@ -130,6 +132,11 @@ export const useEarnWriteCalls = (
       // shouldConvertWeth,
     ]);
   }
+  function bfrVest2claim() {
+    writeCall(callBack, 'claim', [
+      // shouldConvertWeth,
+    ]);
+  }
   function claimARB() {
     RewardRouter2(callBack, 'handleRewards', [
       false,
@@ -189,6 +196,7 @@ export const useEarnWriteCalls = (
     sellARBBLP,
     deposit2,
     withdraw2,
+    bfrVest2claim,
     compound2,
     claim2,
     claimARB,

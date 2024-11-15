@@ -33,8 +33,10 @@ export const DepositModal = ({
   type,
   depositFn,
   validatinosFn,
+  instant,
 }: {
   head: string;
+  instant?: boolean;
   type: 'ibfr' | 'blp' | 'arbblp';
   depositFn: (amount: string, vesterContract: string) => void;
   validatinosFn: (amount: any) => true | undefined;
@@ -82,11 +84,12 @@ export const DepositModal = ({
         id: '007',
       });
     else if (
-      gt(val, max) ||
-      gt(
-        subtract(reserveAmount, currentVault.reserved_for_vesting[0]),
-        pageState.vest[type].staked_tokens.value
-      )
+      !instant &&
+      (gt(val, max) ||
+        gt(
+          subtract(reserveAmount, currentVault.reserved_for_vesting[0]),
+          pageState.vest[type].staked_tokens.value
+        ))
     )
       return toastify({
         type: 'error',
@@ -139,81 +142,85 @@ export const DepositModal = ({
         }
       />
 
-      <div className="flex justify-between text-f14 mt-3">
-        <div className="text-3">Wallet</div>
-        <div>
-          <Display
-            data={pageState.earn.esBfr.user.wallet_balance.token_value}
-            unit={'esBFR'}
-          />
-        </div>
-      </div>
-      <div className="flex justify-between text-f14 mt-2">
-        <div className="text-3">Vault Capacity</div>
-        <NumberTooltip
-          content={
-            <TableAligner
-              className=""
-              keysName={['Deposited', 'Max Capacity']}
-              keyStyle={tooltipKeyClasses}
-              valueStyle={tooltipValueClasses}
-              values={[
-                <Display
-                  className="!justify-end"
-                  data={currentVault.vesting_status.vested}
-                  unit="esBFR"
-                />,
-                <Display
-                  className="!justify-end"
-                  data={currentVault.maxVestableAmountExact}
-                  unit="esBFR"
-                />,
-              ]}
-            ></TableAligner>
-          }
-        >
-          <div className={`flex ${underLineClass}`}>
-            <Display
-              data={add(currentVault.vesting_status.vested, val || '0')}
-              disable
-            />
-            &nbsp;/&nbsp;
-            <Display data={currentVault.maxVestableAmountExact} disable />
+      {!instant && (
+        <>
+          <div className="flex justify-between text-f14 mt-3">
+            <div className="text-3">Wallet</div>
+            <div>
+              <Display
+                data={pageState.earn.esBfr.user.wallet_balance.token_value}
+                unit={'esBFR'}
+              />
+            </div>
           </div>
-        </NumberTooltip>
-      </div>
-      <div className="flex justify-between text-f14 mt-2">
-        <div className="text-3">Reserve Amount</div>
-        <NumberTooltip
-          className="flex"
-          content={
-            <TableAligner
-              keysName={['Current Reserved', 'Additional Reserve Required']}
-              keyStyle={tooltipKeyClasses}
-              valueStyle={tooltipValueClasses}
-              values={[
+          <div className="flex justify-between text-f14 mt-2">
+            <div className="text-3">Vault Capacity</div>
+            <NumberTooltip
+              content={
+                <TableAligner
+                  className=""
+                  keysName={['Deposited', 'Max Capacity']}
+                  keyStyle={tooltipKeyClasses}
+                  valueStyle={tooltipValueClasses}
+                  values={[
+                    <Display
+                      className="!justify-end"
+                      data={currentVault.vesting_status.vested}
+                      unit="esBFR"
+                    />,
+                    <Display
+                      className="!justify-end"
+                      data={currentVault.maxVestableAmountExact}
+                      unit="esBFR"
+                    />,
+                  ]}
+                ></TableAligner>
+              }
+            >
+              <div className={`flex ${underLineClass}`}>
                 <Display
-                  className="!justify-end"
-                  data={currentVault.reserved_for_vesting[0]}
-                />,
-                <Display
-                  className="!justify-end"
-                  data={subtract(
-                    reserveAmount,
-                    currentVault.reserved_for_vesting[0]
-                  )}
-                />,
-              ]}
-            ></TableAligner>
-          }
-        >
-          <div className={`flex ${underLineClass}`}>
-            <Display data={reserveAmount} disable />
-            &nbsp;/&nbsp;
-            <Display data={currentVault.staked_tokens.value} disable />
+                  data={add(currentVault.vesting_status.vested, val || '0')}
+                  disable
+                />
+                &nbsp;/&nbsp;
+                <Display data={currentVault.maxVestableAmountExact} disable />
+              </div>
+            </NumberTooltip>
           </div>
-        </NumberTooltip>
-      </div>
+          <div className="flex justify-between text-f14 mt-2">
+            <div className="text-3">Reserve Amount</div>
+            <NumberTooltip
+              className="flex"
+              content={
+                <TableAligner
+                  keysName={['Current Reserved', 'Additional Reserve Required']}
+                  keyStyle={tooltipKeyClasses}
+                  valueStyle={tooltipValueClasses}
+                  values={[
+                    <Display
+                      className="!justify-end"
+                      data={currentVault.reserved_for_vesting[0]}
+                    />,
+                    <Display
+                      className="!justify-end"
+                      data={subtract(
+                        reserveAmount,
+                        currentVault.reserved_for_vesting[0]
+                      )}
+                    />,
+                  ]}
+                ></TableAligner>
+              }
+            >
+              <div className={`flex ${underLineClass}`}>
+                <Display data={reserveAmount} disable />
+                &nbsp;/&nbsp;
+                <Display data={currentVault.staked_tokens.value} disable />
+              </div>
+            </NumberTooltip>
+          </div>
+        </>
+      )}
 
       <div className="flex whitespace-nowrap mt-4">
         <BlueBtn

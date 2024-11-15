@@ -126,6 +126,7 @@ export const appConfig = {
       StakedBlpTracker: '0x7d1d610Fe82482412842e8110afF1cB72FA66bc8',
       FeeBlpTracker: '0xCCFd47cCabbF058Fb5566CC31b552b21279bd89a',
       BfrVester: '0x92f424a2A65efd48ea57b10D345f4B3f2460F8c8',
+      BfrVesterV2: '0xF454b87b3DbE726157173A331234fE2d353DB0Dc',
       BlpVester: '0x22499C54cD0F38fE75B2805619Ac8d0e815e3DC7',
       StakedBfrDistributor: '0x0f9a5Db56d0f895d1d18F0aD89002a14271F7162',
       StakedBlpDistributor: '0xF3Af375AfCdcEA75F70ECfD6D477Ab1a76A33A01',

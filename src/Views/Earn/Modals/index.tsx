@@ -198,6 +198,18 @@ function ModalChild() {
           validatinosFn={BFRVesetValidatinos}
         />
       );
+    case 'iBFRdepositV2':
+      const { deposit: depositV2, validations: BFRVesterValidation } =
+        useEarnWriteCalls('Vester', 'BFRv2');
+      return (
+        <DepositModal
+          head="BFR Vault (Instant)"
+          type="ibfr"
+          instant
+          depositFn={depositV2}
+          validatinosFn={BFRVesterValidation}
+        />
+      );
 
     case 'BLPdeposit':
       const { deposit: BLPDeposit, validations: BLPVesetValidatinos } =

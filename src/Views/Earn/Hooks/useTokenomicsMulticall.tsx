@@ -241,6 +241,31 @@ export const useGetTokenomics = () => {
         functionName: 'claimable',
         args: [account],
       },
+      bfrVesterPairAmountV2: {
+        address: contracts.BfrVesterV2,
+        abi: VesterAbi,
+        functionName: 'pairAmounts',
+        args: [account],
+      },
+      bfrVesterVestedAmountV2: {
+        address: contracts.BfrVesterV2,
+        abi: VesterAbi,
+        functionName: 'getVestedAmount',
+        args: [account],
+      },
+
+      bfrVesterClaimedAmountsV2: {
+        address: contracts.BfrVesterV2,
+        abi: VesterAbi,
+        functionName: 'claimedAmounts',
+        args: [account],
+      },
+      bfrVesterClaimableV2: {
+        address: contracts.BfrVesterV2,
+        abi: VesterAbi,
+        functionName: 'claimable',
+        args: [account],
+      },
       blpVesterPairAmount: {
         address: contracts.BlpVester,
         abi: VesterAbi,
@@ -762,6 +787,10 @@ export const useGetTokenomics = () => {
       bfrVesterVestedAmount,
       bfrVesterClaimedAmounts,
       bfrVesterClaimable,
+      bfrVesterPairAmountV2,
+      bfrVesterVestedAmountV2,
+      bfrVesterClaimedAmountsV2,
+      bfrVesterClaimableV2,
       blpVesterPairAmount,
       blpVesterVestedAmount,
       blpVesterClaimedAmounts,
@@ -1397,6 +1426,106 @@ export const useGetTokenomics = () => {
             vested: fromWei(bfrVesterVestedAmount),
           },
           claimable: fromWei(bfrVesterClaimable),
+          maxVestableAmount: fromWei(bfrRemainingVestableAmount),
+          averageStakedAmount: fromWei(bfrVesterAverageStakedAmount),
+          maxVestableAmountExact: fromWei(bfrMaxVestableAmount),
+          allowance: fromWei(esbfrStakedBfrTrackerAllowance),
+          hasEnoughReserveTokens: isVestable(
+            bfrVesterAverageStakedAmount,
+            bfrMaxVestableAmount,
+            feeBfrTrackerUserBalance,
+            esBFRInWallet,
+            bfrVesterPairAmount
+          ),
+        },
+        arbblp: {
+          tokenContract: contracts.StakedBlpTracker2,
+          staked_tokens: {
+            value: fromWei(userStakedArbBlp, arb_decimals),
+            tooltip: [],
+          },
+          pair_token: arbblpVesterPairToken,
+          reserved_for_vesting: [
+            fromWei(arbblpVesterPairAmount, arb_decimals),
+            fromWei(userStakedArbBlp, arb_decimals),
+          ],
+          vesting_status: {
+            claimed: fromWei(
+              add(arbblpVesterClaimedAmounts, arbblpVesterClaimable)
+            ),
+            vested: fromWei(arbblpVesterVestedAmount),
+          },
+          claimable: fromWei(arbblpVesterClaimable),
+          maxVestableAmount: fromWei(arbblpRemainingVestableAmount),
+          averageStakedAmount: fromWei(
+            arbblpVesterAverageStakedAmount,
+            arb_decimals
+          ),
+          maxVestableAmountExact: fromWei(arbblpMaxVestableAmount),
+          allowance: fromWei(esbfrStakedArbBlpTrackerAllowance),
+          hasEnoughReserveTokens: isVestable(
+            arbblpVesterAverageStakedAmount,
+            arbblpMaxVestableAmount,
+            stakedArbBlpTrackerUserBalance,
+            esBFRInWallet,
+            arbblpVesterPairAmount
+          ),
+        },
+        blp: {
+          tokenContract: contracts.StakedBlpTracker,
+          staked_tokens: {
+            value: fromWei(userStakedBlp, usd_decimals),
+            tooltip: [],
+          },
+          pair_token: blpVesterPairToken,
+          reserved_for_vesting: [
+            fromWei(blpVesterPairAmount, usd_decimals),
+            fromWei(userStakedBlp, usd_decimals),
+          ],
+          vesting_status: {
+            claimed: fromWei(add(blpVesterClaimedAmounts, blpVesterClaimable)),
+            vested: fromWei(blpVesterVestedAmount),
+          },
+          claimable: fromWei(blpVesterClaimable),
+          maxVestableAmount: fromWei(blpRemainingVestableAmount),
+          averageStakedAmount: fromWei(
+            blpVesterAverageStakedAmount,
+            usd_decimals
+          ),
+          maxVestableAmountExact: fromWei(blpMaxVestableAmount),
+          allowance: fromWei(esbfrStakedBlpTrackerAllowance),
+          hasEnoughReserveTokens: isVestable(
+            blpVesterAverageStakedAmount,
+            blpMaxVestableAmount,
+            stakedBlpTrackerUserBalance,
+            esBFRInWallet,
+            blpVesterPairAmount
+          ),
+        },
+      },
+      vest2: {
+        ibfr: {
+          tokenContract: contracts.StakedBfrTracker,
+          staked_tokens: {
+            value: fromWei(add(bnBfrInFeeBfr, bonusBfrInFeeBfr)),
+            tooltip: [
+              { key: 'BFR', value: fromWei(userStakedBFR) },
+              { key: 'esBFR', value: fromWei(stakedEsBFR) },
+              { key: 'Multiplier Points', value: fromWei(bnBfrInFeeBfr) },
+            ],
+          },
+          pair_token: bfrVesterPairToken,
+          reserved_for_vesting: [
+            fromWei(bfrVesterPairAmount),
+            fromWei(add(bnBfrInFeeBfr, bonusBfrInFeeBfr)),
+          ],
+          vesting_status: {
+            claimed: fromWei(
+              add(bfrVesterClaimedAmountsV2, bfrVesterClaimableV2)
+            ),
+            vested: fromWei(bfrVesterVestedAmountV2),
+          },
+          claimable: fromWei(bfrVesterClaimableV2),
           maxVestableAmount: fromWei(bfrRemainingVestableAmount),
           averageStakedAmount: fromWei(bfrVesterAverageStakedAmount),
           maxVestableAmountExact: fromWei(bfrMaxVestableAmount),

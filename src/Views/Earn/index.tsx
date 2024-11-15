@@ -7,7 +7,7 @@ import Drawer from '@Views/Common/V2-Drawer';
 import { Chain } from 'wagmi';
 import { getEarnCards } from './Components/EarnCards';
 import { Section } from './Components/Section';
-import { getVestCards } from './Components/VestCards';
+import { getInstantVest, getVestCards } from './Components/VestCards';
 import { IEarn, writeEarnData } from './earnAtom';
 import { useGetTokenomics } from './Hooks/useTokenomicsMulticall';
 import { EarnModals } from './Modals';
@@ -96,6 +96,35 @@ export const EarnPage = () => {
         subHeading={
           <div className={descStyles}>
             Convert esBFR tokens to BFR tokens.
+            <span
+              className="light-blue-text ml6 whitespace-nowrap  hover:underline  cursor-pointer"
+              onClick={() => {
+                window.open(
+                  'https://buffer-finance.medium.com/introducing-all-new-bfr-staking-and-liqudity-pool-ba4b888ba470',
+                  '_blank'
+                );
+              }}
+            >
+              <span className="whitespace-nowrap">
+                Learn more
+                <FrontArrow className="tml w-fit inline" />
+              </span>
+            </span>
+          </div>
+        }
+      />
+      <Section
+        Heading={
+          <div className={topStyles}>
+            {/* <ShieldIcon className="mr-[8px] " /> */}
+            <img src="/Earn/Shield.svg" alt="shield" className="mr-3" />
+            Instant vest
+          </div>
+        }
+        Cards={getInstantVest(data)}
+        subHeading={
+          <div className={descStyles}>
+            Convert esBFR tokens to BFR tokens <b>instantly</b>.
             <span
               className="light-blue-text ml6 whitespace-nowrap  hover:underline  cursor-pointer"
               onClick={() => {
