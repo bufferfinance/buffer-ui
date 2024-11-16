@@ -36,8 +36,8 @@ export const WithdrawTab: React.FC<{
   const unlockedBalance =
     readcallData[activePool + '-getUnlockedLiquidity']?.[0] ?? '0';
   const { data, error } = useBlpRate(activeChain, activePool);
-const blpPrice = data
-const blpBalance = minsa(fsBLPBalance, unlockedBalance);
+  const blpPrice = data;
+  const blpBalance = minsa(fsBLPBalance, unlockedBalance);
   const balance = multiply(
     blpBalance,
     divide(data?.price ?? '100000000', 8) ?? '0'
@@ -67,14 +67,15 @@ const blpBalance = minsa(fsBLPBalance, unlockedBalance);
           You will receive:
           {amount &&
             blpPrice &&
-            divide(multiply(blpPrice.price, amount || '0'), 8) && toFixed(divide(multiply(blpPrice.price, amount || '0'), 8),2)} USDC
-     
+            divide(multiply(blpPrice.price, amount || '0'), 8) &&
+            toFixed(divide(multiply(blpPrice.price, amount || '0'), 8), 2)}{' '}
+          USDC
         </span>
         <WithdrawButton
           activeChain={activeChain}
           amount={amount}
           decimals={decimals}
-          poolAvailableBalance={poolAvailableBalance}
+          poolAvailableBalance={blpBalance}
           unlockedBalance={unlockedBalance}
         />
       </div>
@@ -143,8 +144,8 @@ const WithdrawButton: React.FC<{
         throw new Error('Please enter an amount');
       if (!amount) throw new Error('Please enter an amount');
       if (Number(amount) <= 0) throw new Error('Please enter a valid amount');
-      if (gt(amount, divide(poolAvailableBalance, decimals) as string))
-        throw new Error('Insufficient balance in the pool');
+      // if (gt(amount, divide(poolAvailableBalance, decimals) as string))
+      //   throw new Error('Insufficient balance in the pool');
       if (gt(amount, divide(unlockedBalance, decimals) as string))
         throw new Error('Amount should be less than unlocked balance');
 
