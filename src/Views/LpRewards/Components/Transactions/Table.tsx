@@ -64,7 +64,7 @@ function Body(
       return (
         <Display
           data={divide(txn.amount, decimals)}
-          unit={'uBLP'}
+          unit={'USDC'}
           label={txn.type == 'Provide' ? '+' : '-'}
           precision={2}
           className="!justify-start text-f15"
@@ -86,6 +86,7 @@ function Body(
           data={divide(txn.unitsMinted, decimals)}
           precision={2}
           className="!justify-start text-f15"
+          unit="uBLP"
         />
       );
     case transactionCols.txnHash:
