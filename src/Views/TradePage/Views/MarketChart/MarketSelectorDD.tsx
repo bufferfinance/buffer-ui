@@ -26,7 +26,6 @@ export const MarketSelectorDD: React.FC<{ token0: string; token1: string }> = ({
   return (
     <>
       <button className="flex items-center" ref={ref} {...anchorProps}>
-        {' '}
         <div className="w-[24px] h-[24px]">
           <PairTokenImage pair={joinStrings(token0, token1, '-')} />
         </div>

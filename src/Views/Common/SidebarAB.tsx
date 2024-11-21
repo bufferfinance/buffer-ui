@@ -5,6 +5,7 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 const Slug2Icon = {
   binary: MemoUpDown,
   ab: MemoAboveBelow,
+  perps: MemoAboveBelow,
 };
 const tabs = [
   {
@@ -15,12 +16,15 @@ const tabs = [
     tab: 'Above Below',
     slug: 'ab',
   },
+  // {
+  //   tab: 'Perps',
+  //   slug: 'perps',
+  // },
 ];
 
 const Sidebar: React.FC<any> = ({}) => {
   const location = useLocation();
-  const params = useParams();
-  let show = false;
+  console.log('tabs', tabs);
   return tabs.filter((t) => location.pathname.includes(t.slug)).length ? (
     <aside className="w-[70px] sm:pt-[3px] gap-[17px] py-5 h-full sm:h-fit sm:py-[0px] sm:px-[5px]  flex flex-col items-center sm:flex-row sm:w-full ">
       {tabs.map((t) => {
