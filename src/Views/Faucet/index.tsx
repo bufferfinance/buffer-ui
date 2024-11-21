@@ -12,6 +12,7 @@ import { ethers } from 'ethers';
 import { useEffect, useMemo, useState } from 'react';
 import FaucetABI from './Faucet.json';
 import Background from './style';
+import TESTHClaimingSetps from './TESTHClaimingSteps';
 
 const IbfrFaucet: React.FC = () => {
   useEffect(() => {
@@ -51,6 +52,7 @@ const IbfrFaucet: React.FC = () => {
               <div className="faucet-card bg-1" key={i}>
                 <div className="card-head">{s.top}</div>
                 {s.middle && <div className="card-middle">{s.middle}</div>}
+                <TESTHClaimingSetps />
                 <div className="card-action">{s.bottom}</div>
               </div>
             ))
