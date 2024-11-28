@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import Fade from 'react-reveal/Fade';
 import ErrorIcon from 'src/SVG/Elements/ErrorIcon';
 import Background from './style';
+import { cn } from '@Utils/cn';
 export interface IBufferInputBase {
   placeholder?: string;
   unit?: React.ReactChild;
@@ -93,7 +94,7 @@ const BufferTextInputRoot: React.FC<IBufferTextInputRoot> = ({
         } ${bgClass}`}
       >
         <div className="upper-part ">{header}</div>
-        <div className="lower-part h-full">
+        <div className={cn('lower-part h-full  ', ipClass)}>
           {label ? label : null}
           <input
             className={`${ipClass} inputStyle font3 weight-400`}

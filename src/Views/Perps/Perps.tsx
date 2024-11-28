@@ -7,7 +7,7 @@ import { PerpsBuyingWindow } from './PerpsBuyingWindow';
 import { PerpsTables } from './PerpsTables';
 import { PerpsTV } from './PerpsTV';
 import { PerpsTopStats } from './PerpsTopStats';
-
+import * as PerpsModal from './PerpsModal';
 const Perps = () => {
   const isNotMobile = useMedia('(min-width:1200px)');
   usePriceRetriable();
@@ -15,9 +15,10 @@ const Perps = () => {
 
   return (
     <>
+      <PerpsModal.Deposit />
       <Sidebar />
       <div className={`flex h-full justify-between w-[100%] bg-[#1C1C28] `}>
-        <div className="w-full">
+        <div className="w-full flex flex-col ">
           <PerpsTopStats />
           <PerpsTV />
           <PerpsTables />

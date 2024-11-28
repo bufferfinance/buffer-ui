@@ -18,7 +18,7 @@ import {
   queuets2priceAtom,
 } from '@Views/TradePage/atoms';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import PYTHLOGO from '../MarketChart/pyth_logo.png';
 import { CancelledTable } from './CancelTable';
 import { HistoryTable } from './HistoryTable';
@@ -39,33 +39,23 @@ const tables = {
 };
 const gap = ['Cancelled'];
 
-const AccordionTable: React.FC<any> = ({}) => {
+const AccordionTable: React.FC<{
+  tablesList?: { [key: string]: () => JSX.Element };
+}> = ({ tablesList }) => {
   const [expanded, setExpanded] = useAtom(isTableShownAtom);
   const [activeTrades, limitOrders] = useOngoingTrades();
   const setPriceCache = useSetAtom(queuets2priceAtom);
-  const priceCache = useAtomValue(queuets2priceAtom);
 
-  const [activeTable, setActiveTable] = useState('Trades');
-  const getAugmentedData = async (
-    queries: { pair: string; timestamp: number; queueId: number }[]
-  ) => {
-    const priceResponse = await Promise.all(
-      queries.map((q) => getCachedPrice(q))
-    );
-    setPriceCache((p) => {
-      let newP: { [key: number]: number } = { ...p };
-      queries.forEach((q, i) => {
-        newP[q.queueId] = priceResponse[i];
-      });
-      return newP;
-    });
-  };
+  const [activeTable, setActiveTable] = useState(
+    tablesList ? Object.keys(tablesList)[0] : 'Trades'
+  );
 
+  const ActiveTable = tablesList ? tablesList[activeTable] : null;
   return (
     <div className="flex flex-col    ">
       <div className="w-full bg-[#282B39] rounded-[2px] flex items-center  justify-between p-3 ">
         <div className="flex gap-x-[15px]">
-          {Object.keys(tables).map((s) => (
+          {Object.keys(tablesList || tables).map((s) => (
             <button
               onClick={() => {
                 setExpanded(true);
@@ -117,7 +107,9 @@ const AccordionTable: React.FC<any> = ({}) => {
           expanded ? 'h-[355px]' : 'h-[0px]'
         } flex flex-col transition-all  overflow-y-hidden `}
       >
-        {activeTable == 'Trades' ? (
+        {tablesList ? (
+          <ActiveTable />
+        ) : activeTable == 'Trades' ? (
           <OngoingTradesTableMemo
             trades={activeTrades}
             isLoading={false}

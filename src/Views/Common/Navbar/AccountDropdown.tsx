@@ -19,22 +19,26 @@ import { MenuItem, Skeleton } from '@mui/material';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ControlledMenu, useClick, useMenuState } from '@szhsin/react-menu';
 import { useAtomValue, useSetAtom } from 'jotai';
-import React, { ReactNode, SVGProps, useEffect, useRef } from 'react';
+import React, { ReactNode, SVGProps, useEffect, useMemo, useRef } from 'react';
 import { useMedia } from 'react-use';
 import { snackAtom } from '../../../App';
-import { getAddress } from 'viem';
+import { erc20Abi, getAddress } from 'viem';
 import {
   useAccount,
   useBalance,
   useBlockNumber,
   useDisconnect,
   usePublicClient,
+  useReadContracts,
 } from 'wagmi';
 import * as chain from 'wagmi/chains';
 import ETHImage from '../../../../public/tokens/ETH.png';
 import { Display } from '../Tooltips/Display';
 import { BlueBtn } from '../V2-Button';
 import { useQueryClient } from '@tanstack/react-query';
+import { useLocation } from 'react-router-dom';
+import { PerpsConfig } from '@ConfigContract';
+import { divide, toFixed } from '@Utils/NumString/stringArithmatics';
 const token2image = {
   ETH: ETHImage,
 };
@@ -468,21 +472,50 @@ const TokenAccountBalance = () => {
   if (activePoolDetails === undefined) activePoolDetails = pools['USDC'];
   const { address } = useAccount();
   const queryClient = useQueryClient();
-
-  const { data: blockNumber } = useBlockNumber({ watch: true });
-  const { data: balance, queryKey } = useBalance({
-    address,
-    token: activePoolDetails?.tokenAddress,
+  const location = useLocation();
+  const chainId = useMemo(() => {
+    console.log('location', location.pathname);
+    if (location.pathname.includes('perps')) return 421614;
+    return 998;
+  }, [activePoolDetails, location]);
+  const { data: blockNumber } = useBlockNumber({
+    watch: true,
   });
-
+  const { data, queryKey } = useReadContracts({
+    contracts: [
+      {
+        address: activePoolDetails?.tokenAddress,
+        abi: erc20Abi,
+        functionName: 'balanceOf',
+        args: [address!],
+      },
+      {
+        address: PerpsConfig.tokens.USDC,
+        abi: erc20Abi,
+        functionName: 'balanceOf',
+        args: [address!],
+        chainId: PerpsConfig.chainId,
+      },
+    ],
+    // query:
+  });
+  console.log('queryKey', data);
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey });
   }, [blockNumber, queryClient]);
+  const balance = useMemo(() => {
+    if (!data) return '0';
+    return data[location.pathname.includes('perps') ? 1 : 0].result;
+  }, [data, location]);
+  console.log('activedata', data, balance);
 
   return (
     <div className="flex items-center">
       {' '}
-      <Display data={balance?.formatted} className="text-f14" />{' '}
+      <Display
+        data={toFixed(divide(balance?.toString() || '0', 6), 2)}
+        className="text-f14"
+      />{' '}
       <img
         src={`https://res.cloudinary.com/dtuuhbeqt/image/upload/w_50,h_50,c_fill,r_max/Assets/${activePoolDetails.token.toLowerCase()}.png`}
         className="w-[16px] h-[16px] ml-2"

@@ -1,0 +1,4 @@
+- [ ] if session storage don't have the apiWallet, then show the button to create called "Enable Trading" ;10 (20mins for starting)
+- [ ] Create a new apiWallet and manage it inside a zustand ;20
+- [ ] Fix TV & prices
+- [ ] Buy a trade

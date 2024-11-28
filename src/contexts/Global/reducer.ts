@@ -41,7 +41,7 @@ export interface iGlobalState {
     top: boolean;
     main: boolean;
   };
-  txnLoading: 0 | 1 | 2 | 3;
+  txnLoading: 0 | 1 | 2 | 3; //0-no loading, 1 waiting for mm
   show: {
     tryTestnet: boolean;
   };

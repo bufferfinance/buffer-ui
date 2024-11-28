@@ -141,31 +141,34 @@ export const SUPPORTED_CHAINS = {
   }),
   //
   'arb-dev': arbFork,
-  hl: defineChain({
-    id: 998,
-    name: 'Hyperliquid-Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'Test Hyper',
-      symbol: 'TESTH',
-    },
-    rpcUrls: {
-      default: {
-        http: ['https://api.hyperliquid-testnet.xyz/evm'],
+  hl: [
+    defineChain({
+      id: 998,
+      name: 'Hyperliquid-Testnet',
+      nativeCurrency: {
+        decimals: 18,
+        name: 'Test Hyper',
+        symbol: 'TESTH',
       },
-    },
-    contracts: {
-      multicall3: {
-        address: '0x0eb1A99ACbfA4bEDCfd3F25971963408de88DC5b',
+      rpcUrls: {
+        default: {
+          http: ['https://api.hyperliquid-testnet.xyz/evm'],
+        },
       },
-    },
-  }),
+      contracts: {
+        multicall3: {
+          address: '0x0eb1A99ACbfA4bEDCfd3F25971963408de88DC5b',
+        },
+      },
+    }),
+    arbitrumSepolia,
+  ],
 };
 const ACTIVE_NETWORK = SUPPORTED_CHAINS['hl'];
 const config = getDefaultConfig({
   appName: 'My RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',
-  chains: [ACTIVE_NETWORK],
+  chains: SUPPORTED_CHAINS['hl'],
   ssr: false, // If your dApp uses server side rendering (SSR)
 });
 export const allChains = config.chains;
@@ -189,3 +192,20 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     </WagmiProvider>
   </Sentry.ErrorBoundary>
 );
+/*
+
+
+const result = await writeContract(config, {
+  abi,
+  address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+  functionName: 'transferFrom',
+  args: [
+    '0xd2135CfB216b74109775236E36d4b433F1DF507B',
+    '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
+    123n,
+  ],
+  chainId: mainnet.id, 
+})
+
+
+*/

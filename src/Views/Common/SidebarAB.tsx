@@ -16,10 +16,10 @@ const tabs = [
     tab: 'Above Below',
     slug: 'ab',
   },
-  // {
-  //   tab: 'Perps',
-  //   slug: 'perps',
-  // },
+  {
+    tab: 'HL Perps ',
+    slug: 'perps',
+  },
 ];
 
 const Sidebar: React.FC<any> = ({}) => {

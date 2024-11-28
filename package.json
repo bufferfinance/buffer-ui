@@ -18,6 +18,7 @@
     "@formkit/auto-animate": "^1.0.0-beta.6",
     "@lingui/macro": "^4.2.0",
     "@lingui/react": "^4.2.0",
+    "@msgpack/msgpack": "^3.0.0-beta2",
     "@mui/core": "^5.0.0-alpha.54",
     "@mui/icons-material": "^5.3.1",
     "@mui/lab": "^5.0.0-alpha.67",
@@ -110,7 +111,8 @@
     "wagmi": "2.x",
     "web3": "^1.6.1",
     "websocket": "^1.0.34",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@lingui/cli": "^4.2.0",

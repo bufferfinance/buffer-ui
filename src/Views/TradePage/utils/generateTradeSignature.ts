@@ -123,9 +123,9 @@ const generateBuyTradeSignature = async (
   const key = isLimit
     ? { partial: 'UserTradeSignature', full: 'MarketDirectionSignature' }
     : {
-      partial: 'UserTradeSignatureWithSettlementFee',
-      full: 'UserTradeSignatureWithSettlementFee',
-    };
+        partial: 'UserTradeSignatureWithSettlementFee',
+        full: 'UserTradeSignatureWithSettlementFee',
+      };
   const extraArgTypes = !isLimit
     ? [{ name: 'timestamp', type: 'uint256' }, settlementFeeType]
     : [{ name: 'timestamp', type: 'uint256' }];
@@ -169,12 +169,12 @@ const getRSVFromSignature = (signature: string) => {
   const v = '0x' + signature.slice(130, 132);
   return { r, s, v };
 };
-function getDomainVersion(domainName:string){
+function getDomainVersion(domainName: string) {
   // if(isDevnet){
   //   return '1';
   // }
   // return domainName === 'USD Coin' ? '2' : '1'
-  return '1'
+  return '1';
 }
 export default generateTradeSignature;
 const generateApprovalSignature = async (
@@ -210,7 +210,7 @@ const generateApprovalSignature = async (
     },
     message: approveMessage,
   } as const;
-  console.log('approve-deb',approveSignatureParams)
+  console.log('approve-deb', approveSignatureParams);
   const res = await signMethod(approveSignatureParams);
 
   return [res, getRSVFromSignature(res)];

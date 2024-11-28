@@ -28,6 +28,9 @@ body {
   border-bottom: 0.6px solid #ffffff3e;
 }
 
+.border-color-light {
+  border-color: rgba(128, 128, 128, 0.308);
+}
 .shake {
   animation-name: ios-shake;
 	animation-duration: 1s;
