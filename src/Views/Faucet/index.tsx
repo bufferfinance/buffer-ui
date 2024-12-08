@@ -102,7 +102,7 @@ const ClaimButton = ({ token }: { token: string }) => {
       className="btn nowrap"
       onClick={claim}
     >
-      Claim 100 {token}
+      Claim 500 {token}
     </BlueBtn>
   );
 };
