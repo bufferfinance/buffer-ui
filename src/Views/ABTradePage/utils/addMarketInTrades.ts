@@ -26,7 +26,7 @@ const addMarketInTrades = (
         ...t,
         market: tradeMarket,
         pool,
-        trade_size: t.total_fee,
+        // trade_size: t.total_fee,
       };
     })
     .filter((t) => t !== null) as TradeType[];
