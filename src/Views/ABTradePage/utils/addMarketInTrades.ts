@@ -26,7 +26,7 @@ const addMarketInTrades = (
         t = {
           ...t,
           strike: t.strike * 1e7,
-          expiry_price: t.expiry_price ? t.expiry_price * 1000 : null,
+          expiry_price: t.expiry_price ? t.expiry_price * 1e7 : null,
         };
       }
       return {
