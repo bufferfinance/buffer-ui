@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
 export default function TESTHClaimingSetps() {
@@ -20,9 +21,10 @@ export default function TESTHClaimingSetps() {
                     <a
                       href="https://hyperliquid-faucet.vercel.app/"
                       target="_blank"
-                      className="underline"
+                      className="underline inline-flex items-center justify-center gap-1"
                     >
-                      TESTH Faucet
+                      TESTH Faucet{' '}
+                      <ExternalLinkIcon className="w-[10px] h-[10px]" />
                     </a>{' '}
                     for paying Test USDC claiming fee.
                   </>
