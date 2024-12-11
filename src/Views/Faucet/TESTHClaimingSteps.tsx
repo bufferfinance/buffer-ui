@@ -5,10 +5,10 @@ export default function TESTHClaimingSetps() {
     <div className=" bg-gray-900 text-gray-100 p-4 rounded-lg">
       <div className="max-w-[384px] mx-auto">
         <h1 className="text-f18 font-bold mb-4 text-cyan-400">
-          How to claim TESTH?
+          Steps to claim Test USDC tokens:
         </h1>
         <ol className="list-none p-0 space-y-4">
-          {[1, 2, 3].map((step) => (
+          {[1, 2].map((step) => (
             <li key={step} className="relative pl-7">
               <span className="absolute left-0 flex items-center justify-center w-5 h-5 bg-cyan-600 rounded-full text-xs">
                 {step}
@@ -16,31 +16,23 @@ export default function TESTHClaimingSetps() {
               <h2 className="text-base font-semibold mb-1 text-cyan-300">
                 {step == 1 ? (
                   <>
-                    Claim Mock USDC from{' '}
+                    Claim TESTH from{' '}
                     <a
-                      href="https://app.hyperliquid-testnet.xyz/drip"
+                      href="https://hyperliquid-faucet.vercel.app/"
                       target="_blank"
                       className="underline"
                     >
-                      HL testnet Drip
-                    </a>
+                      TESTH Faucet
+                    </a>{' '}
+                    for paying Test USDC claiming fee.
                   </>
                 ) : step == 2 ? (
                   <>
-                    Trade these MOCK USDC to buy TESTH from{' '}
-                    <a
-                      href="https://app.hyperliquid-testnet.xyz/trade"
-                      target="_blank"
-                      className="underline"
-                    >
-                      HL Spot Trading
-                    </a>{' '}
+                    Click the Claim button below ⬇️ to get Test USDC to start
+                    trading on Buffer.
                   </>
                 ) : step == 3 ? (
-                  <>
-                    Send tehse TESTH to System Contract
-                    "0x2222222222222222222222222222222222222222"
-                  </>
+                  <></>
                 ) : (
                   <div>helo</div>
                 )}
@@ -72,21 +64,21 @@ export default function TESTHClaimingSetps() {
               ) : (
                 <p className="text-sm">
                   {step == 1
-                    ? 'Mock USDC is a token available for free, which can be used to buy holdings on HL testnet.'
+                    ? 'You can connect your wallet on the forwarded website and claim TESTH tokens.'
                     : step == 2
-                    ? 'TESTH is native GAS token on HL EVM.'
+                    ? 'Fee is 0.001 TESTH'
                     : 'd'}
                 </p>
               )}
             </li>
           ))}
         </ol>
-        <p className=" font-semibold    mt-4">
+        {/* <p className=" font-semibold    mt-4">
           You now have free TESTH tokens on HL EVM! Connect to the HL EVM
           testnet via Buffer Platform, and your balance will update
           automatically. <br /> <br /> Click the Claim button below ⬇️ to get
           Fake USDC to start trading on Buffer.
-        </p>
+        </p> */}
       </div>
     </div>
   );

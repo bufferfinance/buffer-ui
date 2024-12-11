@@ -13,6 +13,7 @@ import { useEffect, useMemo, useState } from 'react';
 import FaucetABI from './Faucet.json';
 import Background from './style';
 import TESTHClaimingSetps from './TESTHClaimingSteps';
+import { ExternalLinkIcon } from 'lucide-react';
 
 const IbfrFaucet: React.FC = () => {
   useEffect(() => {
@@ -51,9 +52,24 @@ const IbfrFaucet: React.FC = () => {
             content.map((s, i) => (
               <div className="faucet-card bg-1" key={i}>
                 <div className="card-head">{s.top}</div>
-                {s.middle && <div className="card-middle">{s.middle}</div>}
+                {/* <div className="card-middle">Visit TESTH faucet</div>
+                <a
+                  href="https://hyperliquid-faucet.vercel.app/"
+                  className="bg-blue p-2 rounded-lg  text-[14px] px-3 flex itmes-center justify-center gap-1"
+                  target="_blank"
+                >
+                  TESTH faucet <ExternalLinkIcon />
+                </a> */}
+                {/* OR */}
                 <TESTHClaimingSetps />
-                <div className="card-action">{s.bottom}</div>
+                <div>
+                  <div className="card-action">{s.bottom}</div>
+                  {/* {s.middle && (
+                    <div className="text-blueGray-500 text-[12px]">
+                      {s.middle}
+                    </div>
+                  )} */}
+                </div>
               </div>
             ))
           ) : (
