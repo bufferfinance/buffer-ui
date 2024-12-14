@@ -13,7 +13,8 @@ const addMarketInTrades = (
       );
       return !!pool;
     });
-
+    const precision = 8 - tradeMarket?.precesion;
+    console.log('dynamic-price', precision);
     const pool = tradeMarket?.pools.find(
       (pool) =>
         pool.optionContract.toLowerCase() === t?.target_contract.toLowerCase()
@@ -28,7 +29,7 @@ const addMarketInTrades = (
     if (tradeMarket?.token0 == 'BTC') {
       t = {
         ...t,
-        strike: t.strike * 1e7,
+        strike: t.strike * 10 ** precision,
         expiry_price: t.expiry_price ? t.expiry_price * 1e7 : null,
       };
     }

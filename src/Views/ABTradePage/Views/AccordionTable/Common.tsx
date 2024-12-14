@@ -191,39 +191,8 @@ export const SlippageTooltip: React.FC<{
   className?: string;
 }> = ({ option, className }) => {
   // if (!option?.slippage || option?.strike) return <></>;
-  return (
-    <InfoIcon
-      className={className}
-      sm
-      tooltip={`The strike price will be in the range of ${toFixed(
-        subtract(
-          divide(option.strike, 8) as string,
-          divide(
-            multiply(
-              divide(option.strike, 8) as string,
-              divide(option.slippage, 2) as string
-            ),
-            '100'
-          ) as string
-        ),
-
-        4
-      )} - ${toFixed(
-        add(
-          divide(option.strike, 8) as string,
-          divide(
-            multiply(
-              divide(option.strike, 8) as string,
-              divide(option.slippage, 2) as string
-            ),
-            '100'
-          ) as string
-        ),
-
-        4
-      )}`}
-    />
-  );
+  console.log('Option-deb', option);
+  return null;
 };
 
 import { formatDistance } from '@Hooks/Utilities/useStopWatch';

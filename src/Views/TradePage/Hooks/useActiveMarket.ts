@@ -24,6 +24,8 @@ export const getActiveMarket = (
   } else {
     activeMarket = findMarket(markets, 'BTC', 'USD');
   }
+  console.log('paramsdd', activeMarket);
+
   return activeMarket;
 };
 
@@ -34,5 +36,6 @@ export const useActiveMarket = (): { activeMarket: marketType | undefined } => {
     () => getActiveMarket(appConfig, params),
     [appConfig, params]
   );
+  console.log('paramsdd', params);
   return { activeMarket };
 };

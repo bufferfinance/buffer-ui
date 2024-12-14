@@ -197,6 +197,8 @@ export const SlippageTooltip: React.FC<{
   className?: string;
 }> = ({ option, className }) => {
   // if (!option?.slippage || option?.strike) return <></>;
+  console.log('Option-deb', option);
+  return null;
   return (
     <InfoIcon
       className={className}

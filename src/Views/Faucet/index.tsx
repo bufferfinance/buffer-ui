@@ -89,7 +89,7 @@ const ClaimButton = ({ token }: { token: string }) => {
   const [btnLoading, setBtnLoading] = useState(0);
   const pools = usePoolByAsset();
   const faucetContract = pools[token]?.faucet;
-
+  console.log('faucetContract', faucetContract);
   const { writeCall } = useWriteCall(faucetContract, FaucetABI);
   const toastify = useToast();
 

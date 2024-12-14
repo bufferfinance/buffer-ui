@@ -13,16 +13,13 @@ export const useMarketsConfig = () => {
       return null;
     }
 
-
     const response: marketType[] = [];
-    data.optionContracts.forEach((item) => {
+    data.optionContracts.forEach((item: marketType) => {
       const index = response.findIndex((config) => config.tv_id === item.asset);
       // console.log(`item: `, item/);
       if (index !== -1) {
-
         response[index].pools.push(createPoolObject(item));
       } else {
-
         const marketInfo: chartDataType =
           marketsForChart[item.asset as keyof typeof marketsForChart];
         response.push({
@@ -30,6 +27,7 @@ export const useMarketsConfig = () => {
           category: AssetCategory[item.category],
           creation_window_contract: item.configContract.creationWindowAddress,
           pools: [createPoolObject(item)],
+          expo: +item.precesion,
         });
       }
     });

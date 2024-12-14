@@ -14,10 +14,12 @@ export const useMarketsRequest = () => {
     data: {
       optionContracts: bothVersionMrkets?.optionContracts.filter(
         (optionContract) => {
-          return optionContract.poolContract !== null &&
+          return (
+            optionContract.poolContract !== null &&
             getAddress(configData.router) ===
-            getAddress(optionContract.routerContract) &&
+              getAddress(optionContract.routerContract) &&
             optionContract.configContract !== null
+          );
         }
       ),
     },
@@ -58,10 +60,13 @@ export const useV2Markets = () => {
 export const useBothVersionsMarkets = () => {
   const { activeChain } = useActiveChain();
   const configData = getConfig(activeChain.id);
+  console.log('configData.router', configData.router);
   async function fetcher(): Promise<response> {
     const response = await axios.post(indexer_url, {
       query: `{ 
-        optionContracts(limit:1000,where:{routerContract:"${configData.router}"}){
+        optionContracts(limit:1000, where:{routerContract:"${getAddress(
+          configData.router
+        )}"}){
           items{
             configContract {
               address
@@ -77,6 +82,8 @@ export const useBothVersionsMarkets = () => {
               IVFactorITM
               creationWindowAddress
             }
+            index
+            precesion
             routerContract
             address
             poolContract
@@ -99,7 +106,7 @@ export const useBothVersionsMarkets = () => {
       refreshInterval: 60000,
     }
   );
-
+  console.log('data-rep', data);
   const response = useMemo(() => {
     if (!data) return { data, error, mutate };
 
@@ -109,13 +116,12 @@ export const useBothVersionsMarkets = () => {
       data: {
         optionContracts: data.optionContracts.items.filter((option) => {
           if (option.poolContract === null) return true;
-          const check = (
+          const check =
             configData.poolsInfo[
-            getAddress(
-              option.poolContract
-            ) as keyof typeof configData.poolsInfo
-            ] !== undefined
-          );
+              getAddress(
+                option.poolContract
+              ) as keyof typeof configData.poolsInfo
+            ] !== undefined;
           return check;
         }),
       },
@@ -124,4 +130,3 @@ export const useBothVersionsMarkets = () => {
 
   return response;
 };
-

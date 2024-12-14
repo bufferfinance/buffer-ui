@@ -112,7 +112,7 @@ export const useBuyTradeActions = (userInput: string) => {
     const isForex = activeAsset?.category === AssetCategory[0];
     const maxDuration = switchPool?.max_duration;
     const minDuration = switchPool?.min_duration;
-    console.log('trade-deb')
+    console.log('trade-deb');
     if (!maxDuration || !minDuration) {
       return toastify({
         type: 'error',
@@ -383,6 +383,7 @@ export const useBuyTradeActions = (userInput: string) => {
           referralData[2],
           '0',
         ];
+        console.log('Baseargs', baseArgs);
 
         const signatures = await generateBuyTradeSignature(
           address,
@@ -507,7 +508,7 @@ export const useBuyTradeActions = (userInput: string) => {
               </span>
             </div>
           </div>
-        );        // toastify({
+        ); // toastify({
         //   price,
         //   type: 'success',
         //   timings: 20,

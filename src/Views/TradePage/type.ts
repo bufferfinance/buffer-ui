@@ -26,6 +26,8 @@ export type marketType = {
   token0: string;
   token1: string;
   tv_id: string;
+  index: number;
+  precesion: number;
   pair: string;
   price_precision: number;
   full_name: string;

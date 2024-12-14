@@ -306,7 +306,7 @@ export const appConfig = {
         metaData: {},
         name: 'AB',
         product_id: 'xyz',
-        router:ContractsConfig[998].ab.router,
+        router: ContractsConfig[998].ab.router,
       },
     },
     multicall: '0xca11bde05977b3631167028862be2a173976ca11',
@@ -319,7 +319,7 @@ export const appConfig = {
     jackpot:
       ContractsConfig?.[998]?.jackpot ||
       '0xEa0b956A04b265A7E2A6d00A4bD65a48C430cE16',
-    above_below_router:ContractsConfig[998].ab.router,
+    above_below_router: ContractsConfig[998].ab.router,
     poolsInfo: ContractsConfig?.[998].poolsInfo,
 
     EarnConfig: {
@@ -387,7 +387,7 @@ export const appConfig = {
         metaData: {},
         name: 'AB',
         product_id: 'xyz',
-        router:ContractsConfig[9988].ab.router,
+        router: ContractsConfig[9988].ab.router,
       },
     },
     multicall: '0xca11bde05977b3631167028862be2a173976ca11',
@@ -400,7 +400,7 @@ export const appConfig = {
     jackpot:
       ContractsConfig?.[9988]?.jackpot ||
       '0xEa0b956A04b265A7E2A6d00A4bD65a48C430cE16',
-    above_below_router:ContractsConfig[9988].ab.router,
+    above_below_router: ContractsConfig[9988].ab.router,
     poolsInfo: ContractsConfig?.[9988].poolsInfo,
 
     EarnConfig: {
@@ -441,8 +441,9 @@ export const appConfig = {
   },
   '80001': {
     graph: {
-      MAIN: `https://subgraph.satsuma-prod.com/${import.meta.env.VITE_SATSUMA_KEY
-        }/bufferfinance/polygon-testnet/api`,
+      MAIN: `https://subgraph.satsuma-prod.com/${
+        import.meta.env.VITE_SATSUMA_KEY
+      }/bufferfinance/polygon-testnet/api`,
       REWARDS: '',
       LEADERBOARD: '',
       ABOVE_BELOW: '',
@@ -470,8 +471,9 @@ export const appConfig = {
   },
   '137': {
     graph: {
-      MAIN: `https://subgraph.satsuma-prod.com/${import.meta.env.VITE_SATSUMA_KEY
-        }/bufferfinance/polygon-mainnet/api`,
+      MAIN: `https://subgraph.satsuma-prod.com/${
+        import.meta.env.VITE_SATSUMA_KEY
+      }/bufferfinance/polygon-mainnet/api`,
       REWARDS: '',
       LEADERBOARD: '',
       ABOVE_BELOW: '',
@@ -596,7 +598,7 @@ export const marketsForChart = {
     pythId:
       '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43',
     pythGroup: 'Crypto',
-    expo: 1,
+    expo: 8,
   },
   ETHUSD: {
     category: 'Crypto',

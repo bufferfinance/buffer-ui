@@ -69,6 +69,7 @@ export function useWriteCall(contractAddress: string, abi: any[]) {
       inf: 1,
     });
 
+    console.log('wc-deb', contractAddress);
     let transformedArgs: SimulateContractParameters = {
       abi,
       account: address,
