@@ -356,7 +356,7 @@ const contents = {
     </a>
   ),
   default: (
-    <div className=" flex flex-col items-center justify-center gab-[30px]">
+    <div className=" flex flex-col items-center justify-center gap-[30px]">
      <div className="text-[40px]">
        App is undergoing maintenance.
      </div>
