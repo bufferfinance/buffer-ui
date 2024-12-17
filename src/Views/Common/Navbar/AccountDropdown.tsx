@@ -35,6 +35,7 @@ import ETHImage from '../../../../public/tokens/ETH.png';
 import { Display } from '../Tooltips/Display';
 import { BlueBtn } from '../V2-Button';
 import { useQueryClient } from '@tanstack/react-query';
+import { useHLName } from './useHLName';
 const token2image = {
   ETH: ETHImage,
 };
@@ -109,7 +110,7 @@ export const AccountDropdown: React.FC = () => {
         {nonce && nonce > 0 ? 'Reactivate' : ' Activate'} Acount
       </BlueBtn>
     );
-
+  const name = useHLName();
   return (
     <ConnectButton.Custom>
       {({
@@ -307,6 +308,10 @@ export const AccountDropdown: React.FC = () => {
                           </a> */}
                         </div>
                       </div>{' '}
+                    </MenuItem>
+                    <MenuItem className={'!bg-[#232334] text-1 cursor-auto'}>
+                      HyperLiquid Name associated with connected account :{' '}
+                      {name}
                     </MenuItem>
                   </ControlledMenu>
                 </div>
