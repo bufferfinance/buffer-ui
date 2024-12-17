@@ -281,9 +281,9 @@ export const pdev = axios.create({
 });
 // Dev Server Client
 export const dsc = axios.create({
-  baseURL: 'https://api-v2-production-cd16.up.railway.app/',
+  baseURL: api_url,
 });
 export const mainClient = axios.create({
-  baseURL: 'https://api-v2-production-cd16.up.railway.app/',
+  baseURL: api_url,
 });
 // 0x03118E014F75A09BE1c6522c6f5f411980f9a000
