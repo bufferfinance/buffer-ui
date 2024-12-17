@@ -356,13 +356,17 @@ const contents = {
     </a>
   ),
   default: (
-    <a
-      className="flex items-baseline cursor-pointer"
-      href="https://x.com/Buffer_Finance/status/1854599229899255899"
-      target="_blank"
-    >
-      Testnet is live on HyperLiquid!!
-    </a>
+    <div classname=" flex flex-col items-center justify-center gab-[30px]">
+     <div classname="text-[40px]">
+       App is undergoing maintenance.
+     </div>
+     <div classname="text-[30px]">
+       Launching Soon!
+       <div classname="text-[20px]">
+         HL Names are live. Connect the wallet and see the associated HLName in Account Dropdown.
+       </div>
+     </div>
+    </div>
   ),
   leaderboard: (
     <a
@@ -434,7 +438,7 @@ function App() {
             />
           )}
           <Navbar />
-          <AppRoutes />
+        	<div/>
           <Snackbar
             open={snack.message ? true : false}
             autoHideDuration={3500}
