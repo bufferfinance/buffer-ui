@@ -357,14 +357,14 @@ const contents = {
   ),
   default: (
     <div className=" flex flex-col items-center justify-center gap-[30px] leading-relaxed">
-     <div className="text-[40px] leading-relaxed">
+     <div className="text-[40px] leading-[68px]">
        App is undergoing maintenance.
      </div>
      <div className="leading-relaxed text-[25px] flex-col flex items-center justify-center gap-[20px]">
        <div>
        Launching Soon! </div>
-       <div className="text-[18px] flex leading-relaxed text-center ">
-         HL Names are live. Connect the wallet and see your < br className="sm:hidden" / > HLName in Account Dropdown (if associated).
+       <div className="text-[18px] flex leading-relaxed text-center w-[350px] ">
+         HL Names are live. Connect the wallet and see your HLName in Account Dropdown (if associated).
        </div>
      </div>
     </div>
