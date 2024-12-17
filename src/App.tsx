@@ -357,7 +357,7 @@ const contents = {
   ),
   default: (
     <div className=" flex flex-col items-center justify-center gap-[30px] leading-relaxed">
-     <div className="text-[40px] leading-[68px]">
+     <div className="text-[40px] leading-[53px] text-center">
        App is undergoing maintenance.
      </div>
      <div className="leading-relaxed text-[25px] flex-col flex items-center justify-center gap-[20px]">
