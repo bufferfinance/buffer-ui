@@ -361,7 +361,8 @@ const contents = {
        App is undergoing maintenance.
      </div>
      <div className="text-[30px] flex-col items-center justify-center gap-[20px]">
-       Launching Soon! < br/ >
+       <div>
+       Launching Soon! </div>
        <div className="text-[20px] flex ">
          HL Names are live. Connect the wallet and see the < br/ >associated HLName in Account Dropdown.
        </div>
