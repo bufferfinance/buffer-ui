@@ -363,7 +363,7 @@ const contents = {
      <div className="text-[25px] flex-col flex items-center justify-center gap-[20px]">
        <div>
        Launching Soon! </div>
-       <div className="text-[18px] flex ">
+       <div className="text-[18px] flex text-center ">
          HL Names are live. Connect the wallet and see the < br/ >associated HLName in Account Dropdown.
        </div>
      </div>
