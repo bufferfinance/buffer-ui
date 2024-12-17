@@ -360,10 +360,10 @@ const contents = {
      <div className="text-[40px]">
        App is undergoing maintenance.
      </div>
-     <div className="text-[30px]">
+     <div className="text-[30px] flex-col items-center justify-center">
        Launching Soon! < br/ >
-       <div className="text-[20px]">
-         HL Names are live. Connect the wallet and see the associated HLName in Account Dropdown.
+       <div className="text-[20px] flex ">
+         HL Names are live. Connect the wallet and see the < br/ >associated HLName in Account Dropdown.
        </div>
      </div>
     </div>
