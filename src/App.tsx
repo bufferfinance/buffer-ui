@@ -356,13 +356,13 @@ const contents = {
     </a>
   ),
   default: (
-    <div classname=" flex flex-col items-center justify-center gab-[30px]">
-     <div classname="text-[40px]">
+    <div className=" flex flex-col items-center justify-center gab-[30px]">
+     <div className="text-[40px]">
        App is undergoing maintenance.
      </div>
-     <div classname="text-[30px]">
-       Launching Soon!
-       <div classname="text-[20px]">
+     <div className="text-[30px]">
+       Launching Soon! < br/ >
+       <div className="text-[20px]">
          HL Names are live. Connect the wallet and see the associated HLName in Account Dropdown.
        </div>
      </div>
