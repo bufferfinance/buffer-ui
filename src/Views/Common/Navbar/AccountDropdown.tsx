@@ -224,7 +224,11 @@ export const AccountDropdown: React.FC = () => {
                         className="flex items-center font-[500] ml-2 text-f14 bg-[#2C2C41] px-2 rounded-[4px] pb-1"
                         test-id="account-holder-div"
                       >
-                        {account ? `${account.address.slice(0, 6)}` : 'Connect'}
+                        {account
+                          ? name
+                            ? name
+                            : `${account.address.slice(0, 6)}`
+                          : 'Connect'}
                         <DDArrow
                           className={` transition-all duration-300 ml-1 ease-out `}
                         />
@@ -244,10 +248,15 @@ export const AccountDropdown: React.FC = () => {
                     }
                     offsetY={10}
                   >
-                    {name ? <MenuItem className={'!bg-[#232334] text-1 cursor-auto'}>
-                      HyperLiquid Name :{' '}
-                      {name}
-                    </MenuItem>:null}
+                    {name ? (
+                      <MenuItem
+                        className={
+                          '!bg-[#232334] text-1 cursor-auto text-[12px]'
+                        }
+                      >
+                        HyperLiquid Name : {name}
+                      </MenuItem>
+                    ) : null}
                     <MenuItem className={'!bg-[#232334] text-1 cursor-auto'}>
                       <div className="mx-[10px] my-[10px] mb-[14px]">
                         <div className="flex items-center justify-between text-f14 mb-[20px]">
@@ -313,7 +322,6 @@ export const AccountDropdown: React.FC = () => {
                         </div>
                       </div>{' '}
                     </MenuItem>
-                    
                   </ControlledMenu>
                 </div>
               );
