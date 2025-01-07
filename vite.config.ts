@@ -9,7 +9,7 @@ const config = defineConfig(({ command, mode }) => {
   // Load env file based on `mode` in the current working directory.
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, process.cwd(), '');
-  console.log('from app', env)
+  console.log('from app', env);
   return {
     // server: {
     //   hmr: false,
@@ -51,11 +51,10 @@ const config = defineConfig(({ command, mode }) => {
     define: {
       __APP_ENV__: env.APP_ENV,
       isDevnet: true,
-      api_url:JSON.stringify(env.API_URL),
-      indexer_url: JSON.stringify(env.INDEXER_URL)
+      api_url: JSON.stringify('http://localhost:4004/'),
+      indexer_url: JSON.stringify('http://localhost:42069/'),
     },
   };
 });
-
 
 export default config;

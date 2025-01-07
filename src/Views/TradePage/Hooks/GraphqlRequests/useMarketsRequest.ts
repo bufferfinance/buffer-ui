@@ -14,10 +14,12 @@ export const useMarketsRequest = () => {
     data: {
       optionContracts: bothVersionMrkets?.optionContracts.filter(
         (optionContract) => {
-          return optionContract.poolContract !== null &&
+          return (
+            optionContract.poolContract !== null &&
             getAddress(configData.router) ===
-            getAddress(optionContract.routerContract) &&
+              getAddress(optionContract.routerContract) &&
             optionContract.configContract !== null
+          );
         }
       ),
     },
@@ -58,6 +60,7 @@ export const useV2Markets = () => {
 export const useBothVersionsMarkets = () => {
   const { activeChain } = useActiveChain();
   const configData = getConfig(activeChain.id);
+  console.log('activeChain', configData.router);
   async function fetcher(): Promise<response> {
     const response = await axios.post(indexer_url, {
       query: `{ 
@@ -99,7 +102,7 @@ export const useBothVersionsMarkets = () => {
       refreshInterval: 60000,
     }
   );
-
+  console.log('loading:1', data);
   const response = useMemo(() => {
     if (!data) return { data, error, mutate };
 
@@ -109,19 +112,17 @@ export const useBothVersionsMarkets = () => {
       data: {
         optionContracts: data.optionContracts.items.filter((option) => {
           if (option.poolContract === null) return true;
-          const check = (
+          const check =
             configData.poolsInfo[
-            getAddress(
-              option.poolContract
-            ) as keyof typeof configData.poolsInfo
-            ] !== undefined
-          );
+              getAddress(
+                option.poolContract
+              ) as keyof typeof configData.poolsInfo
+            ] !== undefined;
           return check;
         }),
       },
     };
   }, [data, error]);
-
+  console.log('JSON.stringify', response);
   return response;
 };
-

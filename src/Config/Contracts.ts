@@ -148,8 +148,7 @@ export const ContractsConfig = {
     },
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-
-      "0xA4fcbfbFFc7feEaAc50f804fc88Df0fb5CF2362B": {
+      '0xA4fcbfbFFc7feEaAc50f804fc88Df0fb5CF2362B': {
         tokenAddress: '0xf9b92Fde16c458953a479464e46F4ddf3B0B183e',
         faucet: null,
         decimals: 6,
@@ -157,7 +156,7 @@ export const ContractsConfig = {
         permitName: 'USD Coin',
         is_pol: false,
       },
-      "0xf9b92Fde16c458953a479464e46F4ddf3B0B183e": {
+      '0xf9b92Fde16c458953a479464e46F4ddf3B0B183e': {
         tokenAddress: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
         faucet: null,
         decimals: 6,
@@ -183,7 +182,7 @@ export const ContractsConfig = {
       },
     },
   },
-  998:{
+  998: {
     graph: {
       ABOVE_BELOW:
         'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/v2.6-arbitrum-one/version/v0.0.6-ab-add-usd-values/api',
@@ -205,25 +204,25 @@ export const ContractsConfig = {
     ud: {
       router: '0xF84083e11ABc5F79843cd798b5aF260dA2B3509d',
     },
-    referral:"0x711515cb230dA44B6630EF9a82ceE2529492f4C8",
+    referral: '0x711515cb230dA44B6630EF9a82ceE2529492f4C8',
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-      "0x61Be536127b50cC00664e15B101c328F559a1ca5": {
+      '0x61Be536127b50cC00664e15B101c328F559a1ca5': {
         tokenAddress: '0xB6d812601b710a4CD9284e7AAbC2B092A7832ef3',
-        faucet: "830d20474ffed8011030fa408a6dfcb3c01e46e0b0",
+        faucet: '830d20474ffed8011030fa408a6dfcb3c01e46e0b0',
         decimals: 6,
         token: 'USDC',
         permitName: 'USDC',
         is_pol: false,
       },
-      "0x83942CCcda00fCae1B945e96A1B41BE2Ef517b30": {
+      '0x83942CCcda00fCae1B945e96A1B41BE2Ef517b30': {
         tokenAddress: '0x24240B4DF6882277c2B214a196bf0A8437e71D5d',
         faucet: '0x6B655D99962F58B9Aa0fFB18281408CdBCf61800',
         decimals: 18,
         token: 'ARB',
         permitName: 'Arbitrum',
         is_pol: false,
-      }
+      },
     },
   },
   9988: {
@@ -246,26 +245,26 @@ export const ContractsConfig = {
       router: '0x76112134663EF8c4648c2554884A8f66a1e8FE19',
     },
     ud: {
-      router: '0x6919869CD7EA4fc6af5865fD5B937DBD567Fb96B',
+      router: '0x8e5FCE8266Bdd31CD4b4Fbd6677Bd16A4ca6E276',
     },
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-      "0xc58769a7E1d2aAED057342db92eB5afa09b3Bd96": {
-        tokenAddress: '0x45125E224C5567d7706f4aFb2DdF3cd534917Cbd',
+      '0x613676b74fFe3af9C5c452A8C3B57f949Fc05A19': {
+        tokenAddress: '0x122b552a304C28afbbc72aE1D1884a96AD1Fa2Cf',
         faucet: null,
         decimals: 6,
         token: 'USDC',
         permitName: 'USDC',
         is_pol: false,
       },
-      "0xbe9a26bF0771bb8C8e69657F4E85a201420939F1": {
+      '0xbe9a26bF0771bb8C8e69657F4E85a201420939F1': {
         tokenAddress: '0x8909Fda0D59fe090D31887D2Ad54743183CA45EE',
         faucet: '0x6B655D99962F58B9Aa0fFB18281408CdBCf61800',
         decimals: 18,
         token: 'ARB',
         permitName: 'Arbitrum',
         is_pol: false,
-      }
+      },
       // "0x0D8Ea07994838b8672449355553820f1BEF11F72": {
       //   tokenAddress: '0x214BdaF1111296d7fe28f529c4265EAf13A550D7',
       //   faucet: null,
