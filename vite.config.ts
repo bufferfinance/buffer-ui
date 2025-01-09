@@ -51,8 +51,10 @@ const config = defineConfig(({ command, mode }) => {
     define: {
       __APP_ENV__: env.APP_ENV,
       isDevnet: true,
-      api_url: JSON.stringify('http://localhost:4004/'),
-      indexer_url: JSON.stringify('http://localhost:42069/'),
+      api_url: JSON.stringify('https://api-v2-production-cd16.up.railway.app/'),
+      indexer_url: JSON.stringify(
+        'https://ponder-production-518e.up.railway.app/'
+      ),
     },
   };
 });

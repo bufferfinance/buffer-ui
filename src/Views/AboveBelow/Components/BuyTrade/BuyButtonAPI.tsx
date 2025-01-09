@@ -496,7 +496,7 @@ const Buy: React.FC<{
         toFixed(multiply(amount, decimals), 0),
         toFixed(multiply(maxFeePerContracts.toString(), decimals), 0),
         activeMarket.address,
-        toFixed(multiply(price, 1), 0),
+        toFixed(multiply(price, 8), 0),
         settings.partialFill,
         referralData[2],
         currentUTCTimestamp,
@@ -514,7 +514,7 @@ const Buy: React.FC<{
         target_contract: activeMarket.address,
         user_address: address,
         total_fee: toFixed(multiply(amount, decimals), 0),
-        strike: toFixed(multiply(price, 1), 0),
+        strike: toFixed(multiply(price, 8), 0),
         max_fee_per_contract: toFixed(
           multiply(maxFeePerContracts.toString(), decimals),
           0

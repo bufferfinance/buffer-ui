@@ -22,13 +22,7 @@ const addMarketInTrades = (
           expiry_price: t.expiry_price ? t.expiry_price * 1000 : null,
         };
       }
-      if (tradeMarket?.token0 == 'BTC') {
-        t = {
-          ...t,
-          strike: t.strike * 1e7,
-          expiry_price: t.expiry_price ? t.expiry_price * 1000 : null,
-        };
-      }
+
       return {
         ...t,
         market: tradeMarket,

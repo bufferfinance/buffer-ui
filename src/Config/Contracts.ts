@@ -197,26 +197,26 @@ export const ContractsConfig = {
         'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/arbitrum-mainnet/version/v2.7.2-v2.6-profile-data/api',
       LP: 'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/mainnet-dummy/version/v0.0.6-lp-price-fix/api',
     },
-    signer_manager: '0x3721b36c57a7D5DcC8762227Ea6c8a6940701566',
+    signer_manager: '0x1D843b3edc11C97aF823120A7c3F16922f3B7c22',
     ab: {
-      router: '0x8a78E199677820fcb2CB0097d9c506ACCE155D01',
+      router: '0xF6b93FEe640E8ADF5d5c214Aa74de2767B1882e3',
     },
     ud: {
-      router: '0xF84083e11ABc5F79843cd798b5aF260dA2B3509d',
+      router: '0x8e5FCE8266Bdd31CD4b4Fbd6677Bd16A4ca6E276',
     },
     referral: '0x711515cb230dA44B6630EF9a82ceE2529492f4C8',
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-      '0x61Be536127b50cC00664e15B101c328F559a1ca5': {
-        tokenAddress: '0xB6d812601b710a4CD9284e7AAbC2B092A7832ef3',
-        faucet: '830d20474ffed8011030fa408a6dfcb3c01e46e0b0',
+      '0x613676b74fFe3af9C5c452A8C3B57f949Fc05A19': {
+        tokenAddress: '0x122b552a304C28afbbc72aE1D1884a96AD1Fa2Cf',
+        faucet: '0x6c3338B68e37227b022cEd263FEF7D421aB5e68c',
         decimals: 6,
         token: 'USDC',
         permitName: 'USDC',
         is_pol: false,
       },
-      '0x83942CCcda00fCae1B945e96A1B41BE2Ef517b30': {
-        tokenAddress: '0x24240B4DF6882277c2B214a196bf0A8437e71D5d',
+      '0xbe9a26bF0771bb8C8e69657F4E85a201420939F1': {
+        tokenAddress: '0x8909Fda0D59fe090D31887D2Ad54743183CA45EE',
         faucet: '0x6B655D99962F58B9Aa0fFB18281408CdBCf61800',
         decimals: 18,
         token: 'ARB',
@@ -240,9 +240,9 @@ export const ContractsConfig = {
         'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/arbitrum-mainnet/version/v2.7.2-v2.6-profile-data/api',
       LP: 'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/mainnet-dummy/version/v0.0.6-lp-price-fix/api',
     },
-    signer_manager: '0x0423b5Ba72c2cba35B915c232Def93F559A64F62',
+    signer_manager: '0x1D843b3edc11C97aF823120A7c3F16922f3B7c22',
     ab: {
-      router: '0x76112134663EF8c4648c2554884A8f66a1e8FE19',
+      router: '0xF6b93FEe640E8ADF5d5c214Aa74de2767B1882e3',
     },
     ud: {
       router: '0x8e5FCE8266Bdd31CD4b4Fbd6677Bd16A4ca6E276',
@@ -251,7 +251,7 @@ export const ContractsConfig = {
     poolsInfo: {
       '0x613676b74fFe3af9C5c452A8C3B57f949Fc05A19': {
         tokenAddress: '0x122b552a304C28afbbc72aE1D1884a96AD1Fa2Cf',
-        faucet: null,
+        faucet: '0x6c3338B68e37227b022cEd263FEF7D421aB5e68c',
         decimals: 6,
         token: 'USDC',
         permitName: 'USDC',
@@ -279,11 +279,12 @@ export const ContractsConfig = {
 export const pdev = axios.create({
   baseURL: indexer_url,
 });
+console.log('evnvars', indexer_url, api_url);
 // Dev Server Client
 export const dsc = axios.create({
-  baseURL: 'https://api-v2-production-cd16.up.railway.app/',
+  baseURL: api_url,
 });
 export const mainClient = axios.create({
-  baseURL: 'https://api-v2-production-cd16.up.railway.app/',
+  baseURL: api_url,
 });
 // 0x03118E014F75A09BE1c6522c6f5f411980f9a000
