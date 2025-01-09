@@ -20,7 +20,6 @@ export const CHART_TVID = v4().substring(0, 6);
 
 import { Warning } from '@Views/Common/Notification/warning';
 import TnCModal from '@Views/Common/TnCModal';
-// import { TradePage } from '@Views/TradePage';
 
 import Background from './AppStyles';
 import { Navbar } from './Views/Common/Navbar';
