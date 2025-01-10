@@ -14,7 +14,7 @@ export const TimeSelector: React.FC<{
   const { switchPool } = useSwitchPool();
 
   if (!switchPool) return <></>;
-
+  console.log('TimeSswitchPool?.min_durationelector', switchPool?.min_duration);
   return (
     <ColumnGap gap={`${className} 7px`}>
       <BuyTradeHeadText>
@@ -24,7 +24,7 @@ export const TimeSelector: React.FC<{
       <TimePicker
         currentTime={currentTime.HHMM}
         max_duration={switchPool?.max_duration}
-        min_duration={switchPool?.min_duration}
+        min_duration={'00:03'}
         setCurrentTime={setCurrentTime}
       />
     </ColumnGap>
