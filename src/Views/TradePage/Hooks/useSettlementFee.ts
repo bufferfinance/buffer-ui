@@ -84,11 +84,16 @@ export const useSettlementFee = () => {
     if (!responsedata.data) return { data: ex };
     let idx = 0;
     for (let i = 0; i < responsedata.data?.down.length; i++) {
-      if (responsedata.data.down[i].period_s >= periodInMinutes) {
+      console.log(
+        'resfor',
+        responsedata.data.down[i].period,
+        i,
+        periodInMinutes
+      );
+      if (responsedata.data.down[i].period <= periodInMinutes) {
         idx = i;
       }
     }
-    console.log('resfor', responsedata, idx);
     const data = {
       up: responsedata.data.up[idx],
       down: responsedata.data.down[idx],
