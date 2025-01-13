@@ -74,6 +74,8 @@ import MemoExternalLinkSVG from './SVG/ExternalLinkSVG';
 import { LeagueCriteria } from '@Views/V2-Leaderboard/Leagues/LeagueCriteria';
 import { BFRfarmingLeaderboard } from '@Views/BFRfarmingLeaderboard/BFRfarmingLeaderboard';
 import Perps from '@Views/Perps/Perps';
+import TradeSettlementLogger from '@Views/TradeSettlementLogger/TradeSettlementLogger';
+import { PortalRenderer } from '@Views/PortalRenderer';
 
 export const referralCodeAtom = atomWithStorage('referral-code5', '');
 export const snackAtom = atom<{
@@ -356,17 +358,8 @@ const contents = {
     </a>
   ),
   default: (
-    <div className=" flex flex-col items-center justify-center gap-[30px] leading-relaxed">
-     <div className="text-[40px] leading-[53px] text-center">
-       App is undergoing maintenance.
-     </div>
-     <div className="leading-relaxed text-[25px] flex-col flex items-center justify-center gap-[20px]">
-       <div>
-       Launching Soon! </div>
-       <div className="text-[18px] flex leading-relaxed text-center w-[350px] ">
-         HL Names are live. Connect the wallet and see your HLName in Account Dropdown (if associated).
-       </div>
-     </div>
+    <div className=" flex flex-col items-center justify-center ">
+      Testnet is live on Hyperliquid!
     </div>
   ),
   leaderboard: (
@@ -421,6 +414,9 @@ function App() {
     <>
       {/* <PasswordModal /> */}
       <I18nProvider i18n={i18n}>
+        <PortalRenderer>
+          <TradeSettlementLogger />
+        </PortalRenderer>
         <Background>
           <ViewOnlyModeTradePageWarning />
           {graphStatus && (
@@ -439,7 +435,7 @@ function App() {
             />
           )}
           <Navbar />
-        	<div/>
+          <AppRoutes />
           <Snackbar
             open={snack.message ? true : false}
             autoHideDuration={3500}
