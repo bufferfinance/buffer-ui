@@ -22,20 +22,32 @@ import {
   XCircleIcon,
   XCircle,
   XIcon,
+  CrossIcon,
 } from 'lucide-react';
 
 interface TradeTimelineProps {
   trade: TradeType;
   getPoolInfo: (a: any) => void;
+  unsubscribe: (a: TradeType) => void;
 }
 
-export function TradeTimeline({ trade, getPoolInfo }: TradeTimelineProps) {
+export function TradeTimeline({
+  trade,
+  getPoolInfo,
+  unsubscribe,
+}: TradeTimelineProps) {
   const settledTrade = trade.state != 'QUEUED';
   console.log('logsf:rendering ', trade);
   const poolInfo = { decimals: 6 };
 
   return (
-    <div className="w-80 bg-[#2a2b3d] rounded-lg shadow-lg overflow-hidden border border-[#3d3e56]">
+    <div className="w-80 relative bg-[#2a2b3d] rounded-lg shadow-lg overflow-hidden border border-[#3d3e56]">
+      <button
+        className="absolute right-[-6px] top-[-6px] "
+        onClick={() => unsubscribe(trade)}
+      >
+        <CrossIcon className="rotate-45 scale-50  text-[#4a5c77] " />
+      </button>
       <div className="px-4 py-3 bg-[#22233a] flex items-center justify-between">
         <span className="font-bold text-gray-200 flex items-center">
           {trade.is_above ? (
@@ -139,17 +151,20 @@ export function TradeTimeline({ trade, getPoolInfo }: TradeTimelineProps) {
 import React, { useState, useEffect } from 'react';
 
 export default function TradeSettlementLogger() {
-  const [trade, setTrade] = useState({
-    initiation_time: Date.now(),
-  });
   const logs = useTradeSettlmentLogger((state) => state.logs);
+  const ubsubscribe = useTradeSettlmentLogger((state) => state.unsubscribe);
   console.log('logs:sf', logs);
   const { getPoolInfo } = usePoolInfo();
 
   return (
     <div className="flex flex-col justify-end gap-3 overflow-y-auto h-[calc(100vh-4rem)]">
       {Object.entries(logs).map(([k, v]) => (
-        <TradeTimeline trade={v} key={k} getPoolInfo={getPoolInfo} />
+        <TradeTimeline
+          trade={v}
+          key={k}
+          getPoolInfo={getPoolInfo}
+          unsubscribe={ubsubscribe}
+        />
       ))}
     </div>
   );

@@ -24,5 +24,12 @@ export const useTradeSettlmentLogger = create<Notification>()((set) => ({
       return newState;
     });
   },
-  unsubscribe: (trade: TradeType) => {},
+  unsubscribe: (trade: TradeType) => {
+    set((s) => {
+      const newState = { ...s };
+      newState.logs = { ...s.logs };
+      delete newState.logs[trade.id];
+      return newState;
+    });
+  },
 }));
