@@ -48,19 +48,21 @@ const useOngoingTrades = () => {
         if (userAddress === address)
           currentUserSignature = await getSingatureCached(oneCTWallet);
 
-        const res = await axios.get(`${baseUrl}trades/user/active/`, {
+        const packedRes = await axios.get(`${baseUrl}trades/user/ongoing/`, {
           params: {
             user_address: getAddress(userAddress),
             environment: activeChain.id,
             product_id: products.UP_DOWN.product_id,
           },
         });
-        if (!res?.data?.length || !markets?.length) return [[], []];
+        const res = packedRes.data?.active;
+
+        if (!res || !markets?.length) return [[], []];
         // limitOrders
-        const limitOrders = res.data.filter(
+        const limitOrders = res.filter(
           (t: any) => t.is_limit_order && t.state === 'QUEUED'
         );
-        const activeTrades = res.data.filter(
+        const activeTrades = res.filter(
           (t: any) =>
             !t.is_limit_order || (t.is_limit_order && t.state !== 'QUEUED')
         );
