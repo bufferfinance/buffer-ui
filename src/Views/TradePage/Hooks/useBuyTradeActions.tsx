@@ -49,6 +49,7 @@ import { useSwitchPool } from './useSwitchPool';
 import { useProducts } from '@Views/AboveBelow/Hooks/useProductName';
 import { pendingQueueIds } from 'src/App';
 import { postQueuedId } from '@Utils/postQueuedId';
+import { useTradeSettlmentLogger } from '@/stores/useTradeSettlmentLogger';
 enum ArgIndex {
   Strike = 4,
   Period = 2,
@@ -61,6 +62,7 @@ enum ArgIndex {
   Slippage = 5,
 }
 export const useBuyTradeActions = (userInput: string) => {
+  const subscribe = useTradeSettlmentLogger((s) => s.subscribe);
   const { activeChain } = useActiveChain();
   const { data: allSpreads } = useSpread();
   const [settings] = useAtom(tradeSettingsAtom);
@@ -112,7 +114,7 @@ export const useBuyTradeActions = (userInput: string) => {
     const isForex = activeAsset?.category === AssetCategory[0];
     const maxDuration = switchPool?.max_duration;
     const minDuration = switchPool?.min_duration;
-    console.log('trade-deb')
+    console.log('trade-deb');
     if (!maxDuration || !minDuration) {
       return toastify({
         type: 'error',
@@ -440,6 +442,7 @@ export const useBuyTradeActions = (userInput: string) => {
           { params: { environment: activeChain.id } }
         );
         if (resp.data) {
+          subscribe(resp.data);
           pendingQueueIds.add(resp.data.queue_id);
           postQueuedId(resp?.data?.queue_id, configData.router);
         }
@@ -507,7 +510,7 @@ export const useBuyTradeActions = (userInput: string) => {
               </span>
             </div>
           </div>
-        );        // toastify({
+        ); // toastify({
         //   price,
         //   type: 'success',
         //   timings: 20,

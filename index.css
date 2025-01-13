@@ -3821,3 +3821,22 @@ html .pagination-root {
   background-size: 500%;
   animation: color 5s alternate-reverse infinite;
 }
+
+.settlement-border-red{
+  border: 2px solid var(--red);
+}
+.settlement-border-green{
+  border: 2px solid var(--green);
+}
+.settlement-border-queued{
+  border: 2px solid var(--blue);
+}
+
+#portal{
+  z-index: 1000;
+  position: fixed;
+  /* background: red; */
+  right: 0px;
+  padding:10px;
+  bottom: 0px;
+}

@@ -14,6 +14,7 @@ import { TradeType } from '../type';
 import { addMarketInTrades } from '../utils';
 import { useAllV2_5MarketsConfig } from './useAllV2_5MarketsConfig';
 import { useProducts } from '@Views/AboveBelow/Hooks/useProductName';
+import { useTradeSettlmentLogger } from '@/stores/useTradeSettlmentLogger';
 export enum TradeState {
   Queued = 'QUEUED',
   Active = 'ACTIVE',
@@ -22,6 +23,7 @@ export enum TradeState {
 const useOngoingTrades = () => {
   // const { oneCTWallet } = useOneCTWallet();
   const { activeChain } = useActiveChain();
+  const sync = useTradeSettlmentLogger((s) => s.sync);
   const { oneCTWallet } = useOneCTWallet();
   const { address: userAddress } = useUserAccount();
   const { address } = useAccount();
@@ -55,23 +57,17 @@ const useOngoingTrades = () => {
             product_id: products.UP_DOWN.product_id,
           },
         });
-        const res = packedRes.data?.active;
+        const active = packedRes.data?.active;
 
-        if (!res || !markets?.length) return [[], []];
-        // limitOrders
-        const limitOrders = res.filter(
-          (t: any) => t.is_limit_order && t.state === 'QUEUED'
+        if (!active || !markets?.length) return [[], []];
+
+        const activeTrades = addMarketInTrades(active, markets);
+        const cancelledOrders = addMarketInTrades(
+          packedRes.data?.cancelled,
+          markets
         );
-        const activeTrades = res.filter(
-          (t: any) =>
-            !t.is_limit_order || (t.is_limit_order && t.state !== 'QUEUED')
-        );
-        // console.log(`activeTrades: `, activeTrades, limitOrders);
-        // console.log(`markets: `, markets);
-        return [
-          addMarketInTrades(activeTrades, markets),
-          addMarketInTrades(limitOrders, markets),
-        ] as TradeType[][];
+        sync([...activeTrades, ...cancelledOrders]);
+        return [activeTrades, []] as TradeType[][];
       },
       refreshInterval: refreshInterval,
     }

@@ -72,6 +72,8 @@ import LpRewardsPage from '@Views/LpRewards';
 import MemoExternalLinkSVG from './SVG/ExternalLinkSVG';
 import { LeagueCriteria } from '@Views/V2-Leaderboard/Leagues/LeagueCriteria';
 import { BFRfarmingLeaderboard } from '@Views/BFRfarmingLeaderboard/BFRfarmingLeaderboard';
+import { PortalRenderer } from '@Views/PortalRenderer';
+import TradeSettlementLogger from '@Views/TradeSettlementLogger/TradeSettlementLogger';
 
 export const referralCodeAtom = atomWithStorage('referral-code5', '');
 export const snackAtom = atom<{
@@ -406,6 +408,9 @@ function App() {
     <>
       {/* <PasswordModal /> */}
       <I18nProvider i18n={i18n}>
+        <PortalRenderer>
+          <TradeSettlementLogger />
+        </PortalRenderer>{' '}
         <Background>
           <ViewOnlyModeTradePageWarning />
           {graphStatus && (
