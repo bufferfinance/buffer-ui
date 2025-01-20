@@ -66,7 +66,6 @@ export const useBuyTradeActions = (userInput: string) => {
   const { activeChain } = useActiveChain();
   const { data: allSpreads } = useSpread();
   const [settings] = useAtom(tradeSettingsAtom);
-  const setPriceCache = useSetAtom(queuets2priceAtom);
   const { data: approvalExpanded, mutate: updateApprovalData } =
     useApprvalAmount();
   const { signTypedDataAsync } = useSignTypedData();

@@ -7,13 +7,18 @@ function formatTime(timestamp: number): string {
   });
 }
 
-import { useTradeSettlmentLogger } from '@/stores/useTradeSettlmentLogger';
+import {
+  useABTradeSettlmentLogger,
+  useTradeSettlmentLogger,
+} from '@/stores/useTradeSettlmentLogger';
 import DownIcon from '@SVG/Elements/DownIcon';
 import UpIcon from '@SVG/Elements/UpIcon';
 import { getDisplayTime } from '@Utils/Dates/displayDateTime';
 import { divide, toFixed } from '@Utils/NumString/stringArithmatics';
 import { usePoolInfo } from '@Views/TradePage/Hooks/usePoolInfo';
 import { TradeType } from '@Views/TradePage/type';
+import { TradeType as TradeTypeAB } from '@Views/ABTradePage/type';
+
 import {
   ArrowUpIcon,
   ArrowDownIcon,
@@ -26,9 +31,9 @@ import {
 } from 'lucide-react';
 
 interface TradeTimelineProps {
-  trade: TradeType;
+  trade: TradeType | TradeTypeAB;
   getPoolInfo: (a: any) => void;
-  unsubscribe: (a: TradeType) => void;
+  unsubscribe: (a: any) => void;
 }
 
 export function TradeTimeline({
@@ -89,7 +94,9 @@ export function TradeTimeline({
             <div className="flex flex-col">
               <h2 className="font-semibold text-blue-400">Trade Initiated</h2>
               <p className="text-sm text-gray-300">
-                {getDisplayTime(trade.strike_timestamp)}
+                {getDisplayTime(
+                  trade.strike_timestamp || trade.queued_timestamp
+                )}
               </p>
               <p className="text-xs text-gray-400 mt-1">
                 Trade usually gets settled in &lt;30s.
@@ -125,18 +132,18 @@ export function TradeTimeline({
                 <p className="text-sm text-gray-300">
                   {getDisplayTime(trade.open_timestamp)}
                 </p>
-                {/* {trade.state === 'OPENED' ? (
-                  <a
-                    href="#"
+                {trade.state === 'OPENED' ? (
+                  <div
+                    // href="#"
                     className="text-xs text-blue-400 hover:underline mt-1"
                   >
-                    Go to trade
-                  </a>
+                    Wish you luck! 🚀
+                  </div>
                 ) : (
                   <p className="text-xs text-gray-400 mt-1">
                     Reason: {trade.cancellation_reason || 'Unknown'}
                   </p>
-                )} */}
+                )}
               </div>
             </div>
           )}
@@ -150,14 +157,13 @@ export function TradeTimeline({
 
 import React, { useState, useEffect } from 'react';
 
-export default function TradeSettlementLogger() {
-  const logs = useTradeSettlmentLogger((state) => state.logs);
-  const ubsubscribe = useTradeSettlmentLogger((state) => state.unsubscribe);
-  console.log('logs:sf', logs);
+function TradeSettlementLoggerAB() {
+  const logs = useABTradeSettlmentLogger((state) => state.logs);
+  const ubsubscribe = useABTradeSettlmentLogger((state) => state.unsubscribe);
   const { getPoolInfo } = usePoolInfo();
 
   return (
-    <div className="flex flex-col justify-end gap-3 overflow-y-auto h-[calc(100vh-4rem)]">
+    <>
       {Object.entries(logs).map(([k, v]) => (
         <TradeTimeline
           trade={v}
@@ -166,6 +172,33 @@ export default function TradeSettlementLogger() {
           unsubscribe={ubsubscribe}
         />
       ))}
+    </>
+  );
+}
+function TradeSettlementLoggerUD() {
+  const logs = useTradeSettlmentLogger((state) => state.logs);
+  const ubsubscribe = useTradeSettlmentLogger((state) => state.unsubscribe);
+  const { getPoolInfo } = usePoolInfo();
+
+  return (
+    <>
+      {Object.entries(logs).map(([k, v]) => (
+        <TradeTimeline
+          trade={v}
+          key={k}
+          getPoolInfo={getPoolInfo}
+          unsubscribe={ubsubscribe}
+        />
+      ))}
+    </>
+  );
+}
+
+export default function TradeSettlementLogger() {
+  return (
+    <div className="flex flex-col justify-end gap-3 overflow-y-auto ">
+      <TradeSettlementLoggerAB />
+      <TradeSettlementLoggerUD />
     </div>
   );
 }

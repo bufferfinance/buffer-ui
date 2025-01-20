@@ -15,6 +15,7 @@ import { refreshInterval, aboveBelowBaseUrl } from '../config';
 import { TradeType } from '../type';
 import { addMarketInTrades } from '../utils';
 import { useState } from 'react';
+import { useABTradeSettlmentLogger } from '@/stores/useTradeSettlmentLogger';
 export enum TradeState {
   Queued = 'QUEUED',
   Active = 'ACTIVE',
@@ -117,6 +118,8 @@ const mockResponse = {
 };
 const useOngoingTrades = () => {
   const { activeChain } = useActiveChain();
+  const sync = useABTradeSettlmentLogger((s) => s.sync);
+
   const { oneCTWallet } = useOneCTWallet();
   const { address: userAddress } = useUserAccount();
   const { address } = useAccount();
@@ -139,22 +142,33 @@ const useOngoingTrades = () => {
         //     activeChain.id as 42161
         //   )
         // )
-          // return [];
+        // return [];
         let currentUserSignature = null;
         if (userAddress === address)
           currentUserSignature = await getSingatureCached(oneCTWallet);
 
-        const res = await axios.get(`${aboveBelowBaseUrl}trades/user/active/`, {
-          params: {
-            user_address: getAddress(userAddress),
-            environment: activeChain.id,
-            product_id: productNames['AB'].product_id,
-          },
-        });
+        const packedRes = await axios.get(
+          `${aboveBelowBaseUrl}trades/user/ongoing/`,
+          {
+            params: {
+              user_address: getAddress(userAddress),
+              environment: activeChain.id,
+              product_id: productNames['AB'].product_id,
+            },
+          }
+        );
+        const active = packedRes.data?.active;
 
-        if (!res?.data?.length || !markets?.length) return empty;
+        if (!active || !markets?.length) return [[], []];
 
-        return addMarketInTrades(res.data, markets) as TradeType[];
+        const activeTrades = addMarketInTrades(active, markets);
+        const cancelledOrders = addMarketInTrades(
+          packedRes.data?.cancelled,
+          markets
+        );
+        sync([...activeTrades, ...cancelledOrders]);
+
+        return activeTrades as TradeType[];
       },
       refreshInterval: refreshInterval,
     }

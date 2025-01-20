@@ -50,6 +50,7 @@ import { useAccount } from 'wagmi';
 import { getPlatformError, getTradeSizeError } from './TradeSize';
 import { postQueuedId } from '@Utils/postQueuedId';
 import { isExpiryStale, isUSDCSelected } from '@TV/utils';
+import { useABTradeSettlmentLogger } from '@/stores/useTradeSettlmentLogger';
 
 export const BuyButton = () => {
   const { signTypedDataAsync } = useSignTypedData();
@@ -102,6 +103,7 @@ export const BuyButtonAPI: React.FC<{
   oneCtPk: string;
 }> = ({ activeMarket, activeChain, oneCtWallet, oneCtPk }) => {
   const amount = useAtomValue(tradeSizeAtom);
+
   const { data: approvalExpanded, mutate: updateApprovalData } =
     useApprvalAmount();
   const config = getConfig(activeChain.id);
@@ -295,6 +297,7 @@ const Buy: React.FC<{
   const token = activeMarket.poolInfo.token;
   const decimals = activeMarket.poolInfo.decimals;
   const readCallData = useAtomValue(readCallDataAtom);
+  const subscribe = useABTradeSettlmentLogger((s) => s.subscribe);
 
   const maxPermissibleContracts = readCallData?.maxPermissibleContracts;
 
@@ -536,6 +539,9 @@ const Buy: React.FC<{
         apiParams,
         { params: { environment: activeChainId } }
       );
+      if (resp.data) {
+        subscribe(resp.data);
+      }
       postQueuedId(resp?.data?.queue_id, routerContract);
       const content = (
         <div className="flex flex-col gap-y-2 text-f12 ">
