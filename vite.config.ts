@@ -6,7 +6,7 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 const config = defineConfig(({ command, mode }) => {
-  const isLocalDev = false;
+  const isLocalDev = true;
 
   const env = loadEnv(mode, process.cwd(), '');
   return {

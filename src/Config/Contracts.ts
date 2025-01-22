@@ -197,19 +197,19 @@ export const ContractsConfig = {
         'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/arbitrum-mainnet/version/v2.7.2-v2.6-profile-data/api',
       LP: 'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/mainnet-dummy/version/v0.0.6-lp-price-fix/api',
     },
-    signer_manager: '0xE3c837bF030D79BE3265AD047a8e081Bf6d99b2e',
+    signer_manager: '0x5F1FF469D73E2b6B2f8269474bfA3FE0a8C5552a',
     ab: {
-      router: '0x1D34F886642C762a666faB940657238f8B7d5b5d',
+      router: '0x3c0e67c59464a1eA9320BAd9B53dB13B3a1eA431',
     },
     ud: {
-      router: '0xB382127D4516Bf36140B7F089bdE704FF442e0dE',
+      router: '0x723431fa0Ad3AeFAA0C14c58A8B05dD1b2854010',
     },
     referral: '0x711515cb230dA44B6630EF9a82ceE2529492f4C8',
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-      '0x4AEedd83beE131A10dBedd7017927AD6E3803075': {
-        tokenAddress: '0xAf8Eaf63B647f1D6169981DA0E3c7e45d1F7E7Db',
-        faucet: '0x85d749509972B8B77877f238972E92Cfc80ADF8f',
+      '0x74E79e8D3E982736aeEBab245fA01FF9f7521251': {
+        tokenAddress: '0x8739022f4a1c6552b38563EdA584699E7B27d3Ba',
+        faucet: '0x28861a3042D2155a4C7E76464c307A2DfDFBD2b7',
         decimals: 6,
         token: 'USDC',
         permitName: 'USDC',
@@ -240,18 +240,18 @@ export const ContractsConfig = {
         'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/arbitrum-mainnet/version/v2.7.2-v2.6-profile-data/api',
       LP: 'https://subgraph.satsuma-prod.com/e66b06ce96d2/bufferfinance/mainnet-dummy/version/v0.0.6-lp-price-fix/api',
     },
-    signer_manager: '0xE3c837bF030D79BE3265AD047a8e081Bf6d99b2e',
+    signer_manager: '0x5F1FF469D73E2b6B2f8269474bfA3FE0a8C5552a',
     ab: {
-      router: '0x1D34F886642C762a666faB940657238f8B7d5b5d',
+      router: '0x3c0e67c59464a1eA9320BAd9B53dB13B3a1eA431',
     },
     ud: {
-      router: '0xB382127D4516Bf36140B7F089bdE704FF442e0dE',
+      router: '0x723431fa0Ad3AeFAA0C14c58A8B05dD1b2854010',
     },
     jackpot: '0xe34cd1D40733B991fea9ea8545Fa1F490200d6e8',
     poolsInfo: {
-      '0x4AEedd83beE131A10dBedd7017927AD6E3803075': {
-        tokenAddress: '0xAf8Eaf63B647f1D6169981DA0E3c7e45d1F7E7Db',
-        faucet: '0x85d749509972B8B77877f238972E92Cfc80ADF8f',
+      '0x74E79e8D3E982736aeEBab245fA01FF9f7521251': {
+        tokenAddress: '0x8739022f4a1c6552b38563EdA584699E7B27d3Ba',
+        faucet: '0x28861a3042D2155a4C7E76464c307A2DfDFBD2b7',
         decimals: 6,
         token: 'USDC',
         permitName: 'USDC',
