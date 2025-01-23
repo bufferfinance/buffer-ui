@@ -305,12 +305,12 @@ export const getTabs = (
       subTabs: [],
       isExternalLink: false,
     },
-    {
-      to: `/ab/` + market,
-      name: 'Above Below',
-      subTabs: [],
-      isExternalLink: false,
-    },
+    // {
+    //   to: `/ab/` + market,
+    //   name: 'Above Below',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    // },
     {
       to: `/faucet`,
       name: 'Faucet',
@@ -388,13 +388,13 @@ export const getMobileTabs = (
       isExternalLink: false,
       icon: TabIcon.Trade,
     },
-    {
-      to: `/ab/` + market,
-      name: 'Above Below',
-      subTabs: [],
-      isExternalLink: false,
-      icon: TabIcon.Trade,
-    },
+    // {
+    //   to: `/ab/` + market,
+    //   name: 'Above Below',
+    //   subTabs: [],
+    //   isExternalLink: false,
+    //   icon: TabIcon.Trade,
+    // },
     {
       to: `/history`,
       name: 'Activity',
