@@ -449,8 +449,8 @@ function App() {
           <Warning
             body={
               <div className="w-fit flex items-center m-auto">
-                <span className="text-f14 font-extrabold  text-[white] leading-[21px] sm:text-[11px] sm:leading-[12px]">
-                  {bannerCotent}
+                <span className="text-f14 font-extrabold  text-[#D8E9A8] leading-[21px] sm:text-[11px] sm:leading-[12px]">
+                  Buffer Finance is Migrating to Hyperliquid 🤩. Stay tuned!!
                 </span>
               </div>
             }
