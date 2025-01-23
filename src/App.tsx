@@ -446,7 +446,7 @@ function App() {
                 <span className="text-f14 font-extrabold  text-[white] leading-[21px] sm:text-[11px] sm:leading-[12px]">
                   <a href="https://x.com/buffer_finance/status/1881740031653482971?s=46&t=HfZ9npL4AlVTsSlzpdbo8A">
                     {' '}
-                    Buffer Finance is Migrating to Hyperliquid 🤩. Stay tuned!!
+                    Buffer Finance is migrating to Hyperliquid 🤩. Stay tuned!!
                   </a>{' '}
                 </span>
               </div>
