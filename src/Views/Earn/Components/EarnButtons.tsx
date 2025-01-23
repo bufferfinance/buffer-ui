@@ -43,7 +43,7 @@ export function EarnButtons({ cardNum }: { cardNum: number }) {
     case 3:
       return (
         <div className="flex gap-5">
-          {cardNum === 0 && (
+          {/* {cardNum === 0 && (
             <BlueBtn
               onClick={() =>
                 window.open(
@@ -55,7 +55,7 @@ export function EarnButtons({ cardNum }: { cardNum: number }) {
             >
               Buy BFR
             </BlueBtn>
-          )}
+          )} */}
           <BlueBtn
             onClick={() =>
               setPageState({
