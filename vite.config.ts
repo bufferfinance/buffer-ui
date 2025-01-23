@@ -53,7 +53,7 @@ const config = defineConfig(({ command, mode }) => {
       api_url: JSON.stringify(
         isLocalDev
           ? 'http://localhost:4004/'
-          : 'https://api-v2-production-cd16.up.railway.app/'
+          : 'https://api-v2-production-6c6c.up.railway.app/'
       ),
       indexer_url: JSON.stringify(
         isLocalDev
