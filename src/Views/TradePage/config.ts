@@ -600,6 +600,20 @@ export const marketsForChart = {
     pythGroup: 'Crypto',
     expo: 8,
   },
+  TRUMPUSD: {
+    category: 'Crypto',
+    tv_id: 'TRUMPUSD',
+    pair: 'TRUMP-USD',
+    price_precision: 100,
+    token0: 'TRUMP',
+    token1: 'USD',
+    full_name: 'Trump Coin',
+    img: 'https://cdn.buffer.finance/Buffer-Website-Data/main/Assets/btc.svg',
+    pythId:
+      '0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43',
+    pythGroup: 'Crypto',
+    expo: 8,
+  },
   ETHUSD: {
     category: 'Crypto',
     tv_id: 'ETHUSD',

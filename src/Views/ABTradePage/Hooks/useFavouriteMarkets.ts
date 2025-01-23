@@ -22,6 +22,7 @@ export const useUserAddressParam = () => {
 export const useFavouriteMarkets = () => {
   const [favMarkets, setFavMarkets] = useAtom(favouriteMarketsAtom);
   const markets = useMarketsWithChartData();
+  console.log('deb:ma', markets);
   const navigate = useNavigate();
   const { userAddress: userAddressParam } = useUserAddressParam();
   const [selectedAsset] = useAtom(radioValueAtom);
@@ -36,14 +37,7 @@ export const useFavouriteMarkets = () => {
 
     const pinnedMarkets = favMarkets
       .map((favMarket) => {
-        return markets.find(
-          (market) =>
-            joinStrings(
-              market.marketInfo.token0,
-              market.marketInfo.token1,
-              '/'
-            ) === favMarket
-        );
+        return undefined;
       })
       .filter((market) => market !== undefined) as marketData[];
     return pinnedMarkets;

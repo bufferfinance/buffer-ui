@@ -27,6 +27,8 @@ type WSUPdate = {
 // Production = wss://bufferf-pythnet-4e5a.mainnet.pythnet.rpcpool.com/hermes/ws
 // Developement = wss://hermes.pyth.network/ws
 
+const HLClient = reconnectingSocket('wss://api.hyperliquid.xyz/ws');
+
 const client = reconnectingSocket('wss://hermes.pyth.network/ws');
 export let ts2asset2updatecnt = {};
 
@@ -70,21 +72,7 @@ export const usePriceRetriable = () => {
         };
         silentPriceCache[pythIds[(lastJsonMessage as WSUPdate).price_feed.id]] =
           priceUpdatePacked;
-        // console.log(`setting: `, message);
-        // const ts = Math.floor(Date.now() / 1000);
         const asset = Object.keys(data)[0];
-        // if (ts in ts2asset2updatecnt) {
-        //   let asset2updatecnt = ts2asset2updatecnt[ts];
-        //   if (asset in asset2updatecnt) {
-        //     asset2updatecnt[asset]++;
-        //   } else {
-        //     // replace asset2updatecnt with ts2asset2updatecnt in below line
-        //     ts2asset2updatecnt[ts] = { ...ts2asset2updatecnt[ts], [asset]: 1 };
-        //   }
-        // } else {
-        //   const assetUpdated = { [asset]: 1 };
-        //   ts2asset2updatecnt = { ...ts2asset2updatecnt, [ts]: assetUpdated };
-        // }
         if (activeMarketRef.current && asset == activeMarketRef.current) {
           setPrice((p) => ({ ...p, ...data }));
         }
@@ -103,6 +91,47 @@ export const usePriceRetriable = () => {
       );
     }
   }, [isConnected]);
+
+  // Integrate HL oracle
+  const [isConnectedHl, setIsConnectedHL] = useState(HLClient.isConnected());
+  useEffect(() => {
+    return client.onStateChange(setIsConnectedHL);
+  }, [setIsConnectedHL]);
+  useEffect(() => {
+    function handleMessage(message: string) {
+      const lastJsonMessage: HLWSUpdate = JSON.parse(message);
+      if (!lastJsonMessage) return;
+      if (lastJsonMessage?.channel == 'activeAssetCtx') {
+        const lastUpdate = lastJsonMessage.data.ctx;
+        const parsedPriceUpdate = [
+          {
+            time: Math.floor(Date.now() / 1000),
+            price: lastUpdate.oraclePx,
+            volume: 0,
+          },
+        ];
+        const data = {
+          TRUMPUSD: parsedPriceUpdate,
+        };
+        silentPriceCache['TRUMPUSD'] = parsedPriceUpdate;
+        setPrice((p) => ({ ...p, ...data }));
+        // }
+      }
+    }
+    HLClient.on(handleMessage);
+    return () => client.off(handleMessage);
+  }, [setPrice]);
+  useEffect(() => {
+    if (isConnectedHl) {
+      const hlmsg = JSON.stringify({
+        method: 'subscribe',
+        subscription: { type: 'activeAssetCtx', coin: 'TRUMP' },
+      });
+
+      // console.log('ws-deb', wsMsg);
+      HLClient.getClient()!.send(hlmsg);
+    }
+  }, [isConnectedHl]);
 };
 
 export const wsStateAtom = atom<{ state: string }>({

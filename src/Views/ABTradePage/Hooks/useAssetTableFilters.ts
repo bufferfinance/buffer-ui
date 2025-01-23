@@ -15,12 +15,13 @@ import { usePoolInfo } from './usePoolInfo';
 
 export type marketData = responseObj & { marketInfo: chartDataType };
 export const useMarketsWithChartData = () => {
+  console.log('useMarketsWithChartData');
   const { data: markets } = useMarketsRequest();
   if (markets.optionContracts === undefined) {
     return [];
   }
 
-  return markets.optionContracts.map((market) => {
+  const favouriteMarkets = markets.optionContracts.map((market) => {
     const marketInfo: chartDataType =
       marketsForChart[market.asset as keyof typeof marketsForChart];
     return {
@@ -28,6 +29,9 @@ export const useMarketsWithChartData = () => {
       marketInfo,
     };
   });
+
+  console.log('favouriteMarkets', favouriteMarkets);
+  return favouriteMarkets;
 };
 
 export const useAssetTableFilters = (group?: string) => {

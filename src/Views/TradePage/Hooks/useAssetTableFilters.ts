@@ -23,6 +23,7 @@ export const useMarketsWithChartData = () => {
   return markets.optionContracts.map((market) => {
     const marketInfo: chartDataType =
       marketsForChart[market.asset as keyof typeof marketsForChart];
+    console.log('deb:ma', market, marketInfo);
     return {
       ...market,
       marketInfo,
