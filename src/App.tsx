@@ -184,12 +184,11 @@ function App() {
               body={
                 <div>
                   <a
-                    className="flex items-baseline text-[15px] font-semibold"
-                    href="https://mirror.xyz/0xc730FbdFEb3e9dF76008A19962963cA4A2bd8de2/ao87r3b-1Apd_3SAknXX-rHlhspngxCvscaX5vk4JCI"
+                    className="flex items-baseline text-[15px] !text-[#D8E9A8] font-semibold"
+                    href="https://x.com/Buffer_Finance"
                     target="_blank"
                   >
                     Buffer Finance is Migrating to Hyperliquid 🤩. Stay tuned!!
-                    <MemoExternalLinkSVG />{' '}
                   </a>
                 </div>
               }
