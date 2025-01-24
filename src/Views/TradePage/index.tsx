@@ -55,7 +55,7 @@ const TradePage: React.FC<any> = ({}) => {
   return (
     <>
       <EssentialModals />
-      {/* <Sidebar /> */}
+      <Sidebar />
       <div
         className={`flex h-full justify-between w-[100%] bg-[#1C1C28] ${
           panelPosision === tradePanelPosition.Left ? 'flex-row-reverse' : ''
