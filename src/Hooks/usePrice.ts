@@ -95,7 +95,7 @@ export const usePriceRetriable = () => {
   // Integrate HL oracle
   const [isConnectedHl, setIsConnectedHL] = useState(HLClient.isConnected());
   useEffect(() => {
-    return client.onStateChange(setIsConnectedHL);
+    return HLClient.onStateChange(setIsConnectedHL);
   }, [setIsConnectedHL]);
   useEffect(() => {
     function handleMessage(message: string) {
